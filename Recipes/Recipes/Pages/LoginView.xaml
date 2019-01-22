@@ -15,18 +15,16 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label TextColor="#031A68" FontSize="18" Text="LOGIN" />
             </StackLayout>
-            <Entry x:Name="Name" Text="{Binding Username}" Placeholder="Username" Keyboard="Email" FontSize="10"></Entry>
-            <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Password" IsPassword="true" FontSize="10"></Entry>
+            <Entry x:Name="Name" mvx:Bi.nd="Text Username, Mode=TwoWay" Placeholder="Username" Keyboard="Email" FontSize="10"></Entry>
+            <Entry x:Name="Password" mvx:Bi.nd="Text Password, Mode=TwoWay" Placeholder="Password" IsPassword="true" FontSize="10"></Entry>
             <StackLayout HorizontalOptions="Center">
                 <Button Text="Login" 
                         x:Name="BtnSave" 
-                        Command="{Binding saveUserCommand}"
                         FontSize="8" 
                         HeightRequest="30"
-                        WidthRequest="100" >
+                        WidthRequest="100"
+                        mvx:Bi.nd="Click ShowRecipesCommand">
                 </Button>
-                <Label x:Name="TipLabel" 
-                       mvx:Bi.nd="Text Id"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

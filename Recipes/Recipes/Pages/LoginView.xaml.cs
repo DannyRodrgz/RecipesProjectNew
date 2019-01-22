@@ -5,11 +5,9 @@ namespace Recipes.Pages
 {
 	public partial class LoginView : MvxContentPage<LoginViewModel>
     {
-        LoginViewModel loginViewModel;
         public LoginView ()
 		{
 			InitializeComponent ();
-            loginViewModel = new LoginViewModel(this);
 		}
 	}
 }
