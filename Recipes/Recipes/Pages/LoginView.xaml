@@ -1,12 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Recipes.Pages.LoginView">
+<views:MvxContentPage 
+    xmlns:viewModels="clr-namespace:Recipes.ViewModels;assembly=Recipes"
+    x:TypeArguments="viewModels:LoginViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"    
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    x:Class="Recipes.Pages.LoginView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="12,12">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Image Source="recipes.png" WidthRequest="50" HeightRequest="50"></Image>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label TextColor="#031A68" FontSize="18" Text="LOGIN" />
+            </StackLayout>
+            <Entry x:Name="Name" Text="{Binding Username}" Placeholder="Username" Keyboard="Email" FontSize="10"></Entry>
+            <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Password" IsPassword="true" FontSize="10"></Entry>
+            <StackLayout HorizontalOptions="Center">
+                <Button Text="Login" 
+                        x:Name="BtnSave" 
+                        Command="{Binding saveUserCommand}"
+                        FontSize="8" 
+                        HeightRequest="30"
+                        WidthRequest="100" >
+                </Button>
+                <Label x:Name="TipLabel" 
+                       mvx:Bi.nd="Text Id"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

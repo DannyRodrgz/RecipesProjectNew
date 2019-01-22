@@ -12,9 +12,13 @@ namespace Recipes
     {
         public override void Initialize()
         {
-            Mvx.RegisterType<ICalculationService, CalculationService>();
+           /* Mvx.RegisterType<ICalculationService, CalculationService>();
 
-            RegisterAppStart<TipViewModel>();
+            RegisterAppStart<TipViewModel>();*/
+
+            Mvx.RegisterType<ILoginService, LoginService>();
+
+            RegisterAppStart<LoginViewModel>();
         }
     }
 }
