@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using MvvmCross.Forms.Views;
+using Recipes.ViewModels;
 
 namespace Recipes.Pages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LoginView : ContentPage
-	{
-		public LoginView ()
+	public partial class LoginView : MvxContentPage<LoginViewModel>
+    {
+        LoginViewModel loginViewModel;
+        public LoginView ()
 		{
 			InitializeComponent ();
+            loginViewModel = new LoginViewModel(this);
 		}
 	}
 }
