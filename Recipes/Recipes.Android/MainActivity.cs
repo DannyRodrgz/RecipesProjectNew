@@ -6,11 +6,17 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using MvvmCross.Forms.Platforms.Android.Views;
+using MvvmCross.Forms.Platforms.Android.Core;
 
 namespace Recipes.Droid
 {
-    [Activity(Label = "Recipes", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    [Activity(Label = "Recipes",
+        Icon = "@drawable/icon", 
+        Theme = "@style/MyTheme", 
+        MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
+        LaunchMode = LaunchMode.SingleTask)]
+    public class MainActivity : MvxFormsAppCompatActivity<MvxFormsAndroidSetup<App, FormsApp>, App, FormsApp>
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -18,8 +24,6 @@ namespace Recipes.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
         }
     }
 }
