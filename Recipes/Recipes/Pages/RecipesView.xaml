@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage 
+    xmlns:viewModels="clr-namespace:Recipes.ViewModels;assembly=Recipes"
+    x:TypeArguments="viewModels:RecipesViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"    
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    x:Class="Recipes.Pages.RecipesView">
+    <ContentPage.Content>
+        <StackLayout Padding="12,12">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Entry x:Name="ingredientEntry" 
+                       Placeholder="Find the best recipe ..." 
+                       FontSize="10"
+                       WidthRequest="140"
+                       mvx:Bi.nd="Text SearchString, Mode=TwoWay">
+                </Entry>
+                <ImageButton x:Name="btnSearch" 
+                             Source="search.png" 
+                             HorizontalOptions="Center"
+                             VerticalOptions="CenterAndExpand"
+                             HeightRequest="16"
+                             WidthRequest="21"
+                             BackgroundColor="#425CB2"
+                             mvx:Bi.nd="Click GetRecipesCommand, Mode=TwoWay">
+                </ImageButton>
+            </StackLayout>
+            <StackLayout>
+                <Entry x:Name="SubTotalEntry" 
+                       mvx:Bi.nd="Text SubTotal, Mode=TwoWay"/>
+            </StackLayout>
+            <StackLayout>
+                <ListView x:Name="recipesList"
+                    mvx:Bi.nd="ItemsSource Recipes, Mode=TwoWay">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell mvx:Bi.nd="Text SearchString, Mode=TwoWay">
+                                
+                            </TextCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

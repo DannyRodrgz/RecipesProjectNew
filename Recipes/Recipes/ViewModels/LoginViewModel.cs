@@ -1,8 +1,11 @@
-﻿using MvvmCross.ViewModels;
+﻿using MvvmCross.Commands;
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using Recipes.Model;
 using Recipes.Pages;
 using Recipes.Services;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Recipes.ViewModels
@@ -10,11 +13,11 @@ namespace Recipes.ViewModels
     public class LoginViewModel : MvxViewModel
     {
         readonly ILoginService LoginService;
+        private readonly IMvxNavigationService navigationService;
         private string Id;
         private string Username;
         private string Password;
         private UserModel User;
-        LoginView loginView;
 
         public LoginViewModel(ILoginService loginService)
         {
@@ -22,12 +25,7 @@ namespace Recipes.ViewModels
             saveUserCommand = new Command(async () => await SaveUser());
         }
 
-        public LoginViewModel(LoginView loginViewApp)
-        {
-            LoginService = new LoginService();
-            loginView = loginViewApp;
-            saveUserCommand = new Command(async () => await SaveUser());
-        }
+        public IMvxAsyncCommand NavigateCommand { get; private set; }
 
         public Command saveUserCommand { get; set; }
 
@@ -37,8 +35,16 @@ namespace Recipes.ViewModels
             Username = "danny@gmail.com";
             Password = "123";
             User = new UserModel(Id, Username, Password);
-            await loginView.DisplayAlert("Recipes", "Ingrese su username y contraseña", "Aceptar");
+            // await loginView.DisplayAlert("Recipes", "Ingrese su username y contraseña", "Aceptar");
             LoginService.SaveUser(User);
+        }
+
+        public ICommand ShowRecipesCommand
+        {
+            get
+            {
+                return new MvxCommand(() => navigationService.Navigate<RecipesViewModel>());
+            }
         }
 
         /*private void BtnSaveClicked(object sender, EventArgs eventArgs)

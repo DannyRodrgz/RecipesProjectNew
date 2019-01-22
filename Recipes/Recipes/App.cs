@@ -2,9 +2,6 @@
 using MvvmCross.ViewModels;
 using Recipes.Services;
 using Recipes.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Recipes
 {
@@ -12,13 +9,17 @@ namespace Recipes
     {
         public override void Initialize()
         {
-           /* Mvx.RegisterType<ICalculationService, CalculationService>();
+            /* Mvx.RegisterType<ICalculationService, CalculationService>();
 
-            RegisterAppStart<TipViewModel>();*/
+             RegisterAppStart<TipViewModel>();*/
 
-            Mvx.RegisterType<ILoginService, LoginService>();
+             Mvx.RegisterType<ILoginService, LoginService>();
 
-            RegisterAppStart<LoginViewModel>();
+             RegisterAppStart<LoginViewModel>();
+
+           /* Mvx.RegisterType<IRecipesService, RecipesService>();
+
+            RegisterAppStart<RecipesViewModel>();*/
         }
     }
 }
