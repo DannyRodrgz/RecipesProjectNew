@@ -19,26 +19,11 @@ namespace Recipes.ViewModels
         {
             service = recipesService;
         }
-        public RecipesViewModel()
-        {
-        }
         public override async Task Initialize()
         {
             await base.Initialize();
-
-            _subTotal = 100;
+            
             searchString = "";
-        }
-
-        private double _subTotal;
-        public double SubTotal
-        {
-            get => _subTotal;
-            set
-            {
-                _subTotal = value;
-                RaisePropertyChanged(() => SubTotal);
-            }
         }
 
         private string searchString;
@@ -65,15 +50,19 @@ namespace Recipes.ViewModels
             }
         }
 
+        private ICommand getRecipesCommand;
         public ICommand GetRecipesCommand
         {
             get
             {
-                return new MvxCommand(async () =>
-                {
-                    Recipes = await service.SearchRecipes(SearchString);
-                });
+                getRecipesCommand = getRecipesCommand ?? new MvxCommand(getRecipes);
+                return getRecipesCommand;
             }
         }
+
+        public async void getRecipes()
+        {
+            Recipes = await service.SearchRecipes(SearchString);
+        }      
     }
 }

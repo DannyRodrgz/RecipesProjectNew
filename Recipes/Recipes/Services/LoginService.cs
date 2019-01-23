@@ -1,4 +1,5 @@
 ﻿using Recipes.Model;
+using System.Diagnostics;
 using Xamarin.Essentials;
 
 namespace Recipes.Services
@@ -8,6 +9,7 @@ namespace Recipes.Services
         public void SaveUser(UserModel User)
         {
             Preferences.Set("UserId", User.Id);
+            Preferences.Set("Username", User.Name);
         }
 
     }
