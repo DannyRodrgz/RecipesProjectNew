@@ -23,7 +23,7 @@
                              HeightRequest="16"
                              WidthRequest="21"
                              BackgroundColor="#425CB2"
-                             mvx:Bi.nd="Click GetRecipesCommand, Mode=TwoWay">
+                             mvx:Bi.nd="Command GetRecipesCommand">
                 </ImageButton>
             </StackLayout>
             <StackLayout>

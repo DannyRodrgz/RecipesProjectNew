@@ -11,6 +11,7 @@ namespace Recipes.Services
         Recipe getSpecificRecipe(string label);
         ObservableCollection<Recipe> getAllRecipes(string ingredient);
         ObservableCollection<Recipe> getAllRecipes();
-        Task<List<Recipe>> SearchRecipes(string ingredient);
+        // Task<List<Recipe>> SearchRecipes(string ingredient);
+        Task<Result> GetRecipesResult();
     }
 }

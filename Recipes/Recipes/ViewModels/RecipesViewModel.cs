@@ -62,7 +62,16 @@ namespace Recipes.ViewModels
 
         public async void getRecipes()
         {
-            Recipes = await service.SearchRecipes(SearchString);
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                var result = await service.GetRecipesResult();
+                if (result != null)
+                {
+                    var res = result.hits[0].Recipe.Label;
+                    Debug.WriteLine("RESULTTTTTTTTTT" + res);
+                }
+                // Recipes = await service.SearchRecipes(SearchString);
+            }    else { Debug.WriteLine("NULLLLLLLLLL"); }
         }      
     }
 }

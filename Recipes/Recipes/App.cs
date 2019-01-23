@@ -12,7 +12,7 @@ namespace Recipes
         {
             /*Mvx.RegisterType<ICalculationService, CalculationService>();
 
-             RegisterAppStart<TipViewModel>();
+             RegisterAppStart<TipViewModel>();*/
              var id = Preferences.Get("UserId", "default");
              if(id.Equals("159")) {
 
@@ -28,11 +28,11 @@ namespace Recipes
 
             /* Mvx.RegisterType<IRecipesService, RecipesService>();
 
-             RegisterAppStart<RecipesViewModel>();*/
+             RegisterAppStart<RecipesViewModel>();
 
             Mvx.RegisterType<ISettingsService, SettingsService>();
 
-            RegisterAppStart<SettingsViewModel>();
+            RegisterAppStart<SettingsViewModel>();*/
         }
     }
 }
