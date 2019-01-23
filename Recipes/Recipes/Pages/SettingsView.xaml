@@ -24,7 +24,7 @@
                         FontSize="8"                       
                         HeightRequest="30"
                         WidthRequest="100"                        
-                        mvx:Bi.nd="Command LogoutCommand">
+                        mvx:Bi.nd="Command GetRecipesCommand">
                 </Button>
             </StackLayout>
         </StackLayout>

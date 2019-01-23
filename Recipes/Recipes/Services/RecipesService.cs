@@ -24,7 +24,31 @@ namespace Recipes.Services
         {
         }
 
-        private HttpClient BaseClient
+        public async Task<Result> GetRecipesResult() {
+
+            var res = new Result();
+            try
+            {
+                client = new HttpClient();
+                var response = await client.GetAsync("https://api.edamam.com/search?q=chicken&app_id=7af53792&app_key=c9e91b62013333bebd3abf3adc20e0e8");
+                client.DefaultRequestHeaders.Add("Content-Encoding", "gzip");
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    Debug.WriteLine("STATUSSS CATCH" + response.Content.ReadAsStringAsync());
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    res = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(jsonString);
+                // return Newtonsoft.Json.JsonConvert.DeserializeObject<List<Hit>>(jsonString);
+                }
+            }
+            catch {
+                Debug.WriteLine("SERVICEEEEE CATCH" + res);
+                return res;
+            }
+            Debug.WriteLine("SERVICEEEEE other" + res);
+            return res;
+        }
+
+        /*private HttpClient BaseClient
         {
             get
             {
@@ -39,6 +63,7 @@ namespace Recipes.Services
         {
             try
             {
+                Debug.WriteLine("SERVICEEEEEE" + ingredient);
                 var res = await BaseClient.GetAsync(string.Format("/search?q="+ ingredient + "&app_id=7af53792&app_key=c9e91b62013333bebd3abf3adc20e0e8", API_KEY,
                     ingredient));
                 res.EnsureSuccessStatusCode();
@@ -51,6 +76,8 @@ namespace Recipes.Services
 
                 var hitsList = allRecipesResult.hits;
 
+                Debug.WriteLine("SERVICEEEEEE" + res.ToString());
+
                 List<Recipe> recipeList = new List<Recipe>();
                 for (int i=0; i<hitsList.Count; i++) {
                     recipeList.Add(hitsList[i].Recipe);
@@ -61,7 +88,7 @@ namespace Recipes.Services
             {
                 return null;
             }
-        }
+        }*/
         
         public ObservableCollection<Recipe> Recipes { get; set; }
 
