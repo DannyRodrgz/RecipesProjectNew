@@ -6,6 +6,10 @@ namespace Recipes.Model
 {
     public class UserModel : IUserModel
     {
+        public UserModel()
+        {
+        }
+
         public UserModel(String IdUser, String UserName, String UserPassword)
         {
             Id = IdUser;

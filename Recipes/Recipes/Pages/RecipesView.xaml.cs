@@ -13,11 +13,9 @@ namespace Recipes.Pages
 {
 	public partial class RecipesView : MvxContentPage<RecipesViewModel>
     {
-        RecipesViewModel contexto = new RecipesViewModel();
 		public RecipesView ()
 		{
 			InitializeComponent ();
-            // BindingContext = contexto;
 		}
 	}
 }

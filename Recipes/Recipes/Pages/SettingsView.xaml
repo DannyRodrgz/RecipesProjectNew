@@ -10,21 +10,21 @@
     <ContentPage.Content>
         <StackLayout Padding="15,12">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Image Source="recipeSettings.png" WidthRequest="50" HeightRequest="50"></Image>
+                <Image Source="settings.png" WidthRequest="50" HeightRequest="50"></Image>
             </StackLayout>
             <StackLayout HorizontalOptions="Start">
                 <Label Text="Username:" TextColor="#031A68" FontSize="11"/>
             </StackLayout>
             <StackLayout HorizontalOptions="Start">
-                <Label Text="{Binding Name}" FontSize="10"/>
+                <Label mvx:Bi.nd="Text Username, Mode=TwoWay" FontSize="10"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Button Text="Logout" 
                         x:Name="BtnLogout" 
-                        FontSize="8" 
-                        Clicked="BtnLogoutClicked"                        
+                        FontSize="8"                       
                         HeightRequest="30"
-                        WidthRequest="100">
+                        WidthRequest="100"                        
+                        mvx:Bi.nd="Command LogoutCommand">
                 </Button>
             </StackLayout>
         </StackLayout>

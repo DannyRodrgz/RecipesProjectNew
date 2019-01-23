@@ -6970,13 +6970,13 @@ namespace Recipes.Droid
 			public const int recipes = 2130837804;
 			
 			// aapt resource value: 0x7f02012d
-			public const int recipeSettings = 2130837805;
+			public const int search = 2130837805;
 			
 			// aapt resource value: 0x7f02012e
-			public const int search = 2130837806;
+			public const int search2 = 2130837806;
 			
 			// aapt resource value: 0x7f02012f
-			public const int search2 = 2130837807;
+			public const int settings = 2130837807;
 			
 			// aapt resource value: 0x7f020130
 			public const int tooltip_frame_dark = 2130837808;
