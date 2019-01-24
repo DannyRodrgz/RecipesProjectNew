@@ -23,8 +23,7 @@
                         FontSize="8" 
                         HeightRequest="30"
                         WidthRequest="100"
-                        mvx:Bi.nd="Command SaveUserCommand"
-                        >
+                        mvx:Bi.nd="Command SaveUserCommand">
                 </Button>
             </StackLayout>
         </StackLayout>

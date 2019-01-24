@@ -27,17 +27,23 @@
                 </ImageButton>
             </StackLayout>
             <StackLayout>
-                <Entry x:Name="SubTotalEntry" 
-                       mvx:Bi.nd="Text SubTotal, Mode=TwoWay"/>
-            </StackLayout>
-            <StackLayout>
-                <ListView x:Name="recipesList"
-                    mvx:Bi.nd="ItemsSource Recipes, Mode=TwoWay">
+                <ListView  x:Name="listView"
+                           mvx:Bi.nd="ItemsSource Recipes">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextCell mvx:Bi.nd="Text SearchString, Mode=TwoWay">
-                                
-                            </TextCell>
+                            <ViewCell>
+                                <StackLayout BackgroundColor="#eee"
+                                             Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding image}" />
+                                        <Label mvx:Bi.nd="Text Label, Mode=TwoWay"
+                                               TextColor="#f35e20" />
+                                        <Label Text="FF"
+                                               HorizontalOptions="EndAndExpand"
+                                               TextColor="#503026" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

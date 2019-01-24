@@ -4,6 +4,7 @@ using MvvmCross.ViewModels;
 using Recipes.Model;
 using Recipes.Pages;
 using Recipes.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -18,10 +19,16 @@ namespace Recipes.ViewModels
         private UserModel user;
         readonly IRecipesService service;
         private readonly IMvxNavigationService navigationService;
+        public List<Recipe> listRecipes;
+        Recipe recipe1;
+        Recipe recipe2;
         public RecipesViewModel(IRecipesService recipesService, IMvxNavigationService navigation)
         {
             service = recipesService;
             navigationService = navigation;
+            listRecipes = new List<Recipe>();
+            recipe1 = new Recipe("Sopa de mani", 12.5);
+            recipe2 = new Recipe("Chanka", 17.5);
         }
 
         public override void Prepare()
@@ -39,6 +46,7 @@ namespace Recipes.ViewModels
             await base.Initialize();
             
             searchString = "";
+            recipes = new List<Recipe>();
         }
 
         private string searchString;
@@ -77,7 +85,14 @@ namespace Recipes.ViewModels
 
         public void GetRecipes()
         {
-            navigationService.Navigate<RecipeDetailViewModel, UserModel>(new UserModel());
+            Recipes.Add(recipe1);
+            Recipes.Add(recipe2);
+            Debug.WriteLine("NULLLLLLLLLL" + Recipes[1].Label);
+            ListView listView = new ListView();
+            listView.ItemsSource = recipes;
+
+            Debug.WriteLine("NULLLLLLLLLLaaaaaaa" + listView.ItemsSource);
+            // navigationService.Navigate<RecipeDetailViewModel, UserModel>(new UserModel());
             /*if (!string.IsNullOrEmpty(SearchString))
             {
                 var result = await service.GetRecipesResult();
@@ -87,6 +102,6 @@ namespace Recipes.ViewModels
                 }
                 // Recipes = await service.SearchRecipes(SearchString);
             }    else {  }*/
-        }      
-    }
+        }
+}
 }
