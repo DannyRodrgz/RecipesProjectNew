@@ -9,8 +9,14 @@
     x:Class="Recipes.Pages.RecipeDetailView">
     <ContentPage.Content>
         <StackLayout Padding="12,12">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Image Source="settings.png" WidthRequest="50" HeightRequest="50"></Image>
+            </StackLayout>
+            <StackLayout HorizontalOptions="Start">
+                <Label Text="Ingredients:" TextColor="#031A68" FontSize="11"/>
+            </StackLayout>
             <StackLayout HorizontalOptions="Center">
-                <Button Text="Login" 
+                <Button Text="Settings" 
                         x:Name="BtnSave" 
                         FontSize="8" 
                         HeightRequest="30"

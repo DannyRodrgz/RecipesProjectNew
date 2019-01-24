@@ -7,6 +7,16 @@ namespace Recipes.Model
 {
     public class Recipe : IRecipe
     {
+        public Recipe ()
+        {
+
+        }
+
+        public Recipe(string LabelR, double CaloriesR)
+        {
+            Label = LabelR;
+            Calories = CaloriesR;
+        }
         [JsonProperty("uri")]
         public Uri Uri { get; set; }
 
