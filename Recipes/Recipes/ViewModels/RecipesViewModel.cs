@@ -1,4 +1,5 @@
 ﻿using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Recipes.Model;
 using Recipes.Pages;
@@ -12,12 +13,26 @@ using Xamarin.Forms;
 
 namespace Recipes.ViewModels
 {
-    public class RecipesViewModel : MvxViewModel
+    public class RecipesViewModel : MvxViewModel<UserModel>
     {
+        private UserModel user;
         readonly IRecipesService service;
-        public RecipesViewModel(IRecipesService recipesService)
+        private readonly IMvxNavigationService navigationService;
+        public RecipesViewModel(IRecipesService recipesService, IMvxNavigationService navigation)
         {
             service = recipesService;
+            navigationService = navigation;
+        }
+
+        public override void Prepare()
+        {
+            // first callback. Initialize parameter-agnostic stuff here
+        }
+
+        public override void Prepare(UserModel parameter)
+        {
+            // receive and store the parameter here
+            user = parameter;
         }
         public override async Task Initialize()
         {
@@ -55,23 +70,23 @@ namespace Recipes.ViewModels
         {
             get
             {
-                getRecipesCommand = getRecipesCommand ?? new MvxCommand(getRecipes);
+                getRecipesCommand = getRecipesCommand ?? new MvxCommand(GetRecipes);
                 return getRecipesCommand;
             }
         }
 
-        public async void getRecipes()
+        public void GetRecipes()
         {
-            if (!string.IsNullOrEmpty(SearchString))
+            navigationService.Navigate<RecipeDetailViewModel, UserModel>(new UserModel());
+            /*if (!string.IsNullOrEmpty(SearchString))
             {
                 var result = await service.GetRecipesResult();
                 if (result != null)
                 {
                     var res = result.hits[0].Recipe.Label;
-                    Debug.WriteLine("RESULTTTTTTTTTT" + res);
                 }
                 // Recipes = await service.SearchRecipes(SearchString);
-            }    else { Debug.WriteLine("NULLLLLLLLLL"); }
+            }    else {  }*/
         }      
     }
 }

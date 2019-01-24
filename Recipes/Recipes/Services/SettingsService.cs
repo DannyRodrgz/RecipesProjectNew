@@ -10,7 +10,7 @@ namespace Recipes.Services
     {
         public void logout()
         {
-            Preferences.Remove("userId");
+            Preferences.Remove("UserId");
             Preferences.Remove("Username");
         }
     }

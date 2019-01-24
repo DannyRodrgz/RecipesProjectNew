@@ -27,25 +27,24 @@ namespace Recipes.Services
         public async Task<Result> GetRecipesResult() {
 
             var res = new Result();
-            try
-            {
+            //try
+            //{
                 client = new HttpClient();
                 var response = await client.GetAsync("https://api.edamam.com/search?q=chicken&app_id=7af53792&app_key=c9e91b62013333bebd3abf3adc20e0e8");
-                client.DefaultRequestHeaders.Add("Content-Encoding", "gzip");
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     Debug.WriteLine("STATUSSS CATCH" + response.Content.ReadAsStringAsync());
                     var jsonString = await response.Content.ReadAsStringAsync();
-                    res = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(jsonString);
-                // return Newtonsoft.Json.JsonConvert.DeserializeObject<List<Hit>>(jsonString);
+                    res =  Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(jsonString);
                 }
-            }
+            return res;
+          /*  }
             catch {
                 Debug.WriteLine("SERVICEEEEE CATCH" + res);
                 return res;
             }
             Debug.WriteLine("SERVICEEEEE other" + res);
-            return res;
+            return res;*/
         }
 
         /*private HttpClient BaseClient
