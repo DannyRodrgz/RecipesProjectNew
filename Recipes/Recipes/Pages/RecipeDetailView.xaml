@@ -6,6 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
     xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    xmlns:customview="clr-namespace:Recipes"
     x:Class="Recipes.Pages.RecipeDetailView">
     <ContentPage Title="Ingredients">
         <StackLayout Padding="12,12">
@@ -59,6 +60,20 @@
                         WidthRequest="100"
                         mvx:Bi.nd="Command ToSettingsCommand">
                 </Button>
+            </StackLayout>
+            <StackLayout VerticalOptions="StartAndExpand" Padding="10" Spacing="10">
+                <customview:CustomButton x:Name="btnRecipeSource"
+                                         CustomBorderColor="#182655"
+                                         Text="Preparation"
+                                         CustomBorderRadius="4"
+                                         CustomBorderWidth="4"
+                                         CustomBackgroundColor="White"
+                                         VerticalOptions="Center"
+                                         mvx:Bi.nd="Command ToSettingsCommand"
+                                         HeightRequest="40"
+                                         WidthRequest="10"/>
+
+
             </StackLayout>
         </StackLayout>
     </ContentPage>

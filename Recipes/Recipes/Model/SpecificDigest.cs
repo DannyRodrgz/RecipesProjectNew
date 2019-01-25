@@ -7,7 +7,7 @@ namespace Recipes.Model
     public class SpecificDigest
     {
         public string label { get; set; }
-        public Sub total { get; set; }
+        public string total { get; set; }
 
         public string Label { get; set; }
         public double Quantity { get; set; }
@@ -15,11 +15,6 @@ namespace Recipes.Model
 
         public SpecificDigest(string titleNutrientValue, Total totalValue)
         {
-            label = titleNutrientValue;
-            total = totalValue;
-            Label = total.Label;
-            Quantity = total.Quantity;
-            Unit = total.Unit;
         }
     }
 }
