@@ -7,6 +7,11 @@ namespace Recipes.Model
 {
     public partial class Digest
     {
+        public Digest(string LabelValue)
+        {
+            Label = LabelValue;
+        }
+
         [JsonProperty("label")]
         public string Label { get; set; }
 

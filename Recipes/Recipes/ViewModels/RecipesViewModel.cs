@@ -19,16 +19,16 @@ namespace Recipes.ViewModels
         private UserModel user;
         readonly IRecipesService service;
         private readonly IMvxNavigationService navigationService;
-        public List<Recipe> listRecipes;
-        Recipe recipe1;
-        Recipe recipe2;
+        Ingredients recipe1;
+        Ingredients recipe2;
         public RecipesViewModel(IRecipesService recipesService, IMvxNavigationService navigation)
         {
             service = recipesService;
             navigationService = navigation;
-            listRecipes = new List<Recipe>();
-            recipe1 = new Recipe("Sopa de mani", 12.5);
-            recipe2 = new Recipe("Chanka", 17.5);
+
+            recipe1 = new Ingredients("Sopa de mani", 12.5, new Uri("https://www.edamam.com/web-img/7a2/7a2f41a7891e8a8f8a087a96930c6463.jpg"));
+            recipe2 = new Ingredients("Chanka", 17.5, new Uri("https://www.edamam.com/web-img/7a2/7a2f41a7891e8a8f8a087a96930c6463.jpg"));
+            
         }
 
         public override void Prepare()
@@ -38,7 +38,6 @@ namespace Recipes.ViewModels
 
         public override void Prepare(UserModel parameter)
         {
-            // receive and store the parameter here
             user = parameter;
         }
         public override async Task Initialize()
@@ -46,7 +45,7 @@ namespace Recipes.ViewModels
             await base.Initialize();
             
             searchString = "";
-            recipes = new List<Recipe>();
+            recipes = new ObservableCollection<Ingredients>();
         }
 
         private string searchString;
@@ -61,9 +60,9 @@ namespace Recipes.ViewModels
             }
         }
 
-        private List<Recipe> recipes;
+        private ObservableCollection<Ingredients> recipes;
 
-        public List<Recipe> Recipes
+        public ObservableCollection<Ingredients> Recipes
         {
             get { return recipes; }
             set
@@ -85,23 +84,22 @@ namespace Recipes.ViewModels
 
         public void GetRecipes()
         {
-            Recipes.Add(recipe1);
-            Recipes.Add(recipe2);
-            Debug.WriteLine("NULLLLLLLLLL" + Recipes[1].Label);
-            ListView listView = new ListView();
-            listView.ItemsSource = recipes;
+           // recipes.Add(recipe1);
+            // recipes.Add(recipe2);
 
-            Debug.WriteLine("NULLLLLLLLLLaaaaaaa" + listView.ItemsSource);
-            // navigationService.Navigate<RecipeDetailViewModel, UserModel>(new UserModel());
-            /*if (!string.IsNullOrEmpty(SearchString))
-            {
-                var result = await service.GetRecipesResult();
-                if (result != null)
-                {
-                    var res = result.hits[0].Recipe.Label;
-                }
-                // Recipes = await service.SearchRecipes(SearchString);
-            }    else {  }*/
+            navigationService.Navigate<RecipeDetailViewModel, UserModel>(new UserModel());
+            /* ListView listView = new ListView();
+             listView.ItemsSource = recipes;
+             navigationService.Navigate<RecipeDetailViewModel, UserModel>(new UserModel());
+             /*if (!string.IsNullOrEmpty(SearchString))
+             {
+                 var result = await service.GetRecipesResult();
+                 if (result != null)
+                 {
+                     var res = result.hits[0].Recipe.Label;
+                 }
+                 // Recipes = await service.SearchRecipes(SearchString);
+             }    else {  }*/
         }
 }
 }

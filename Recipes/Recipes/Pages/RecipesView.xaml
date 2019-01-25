@@ -28,19 +28,30 @@
             </StackLayout>
             <StackLayout>
                 <ListView  x:Name="listView"
-                           mvx:Bi.nd="ItemsSource Recipes">
+                           ItemsSource="{Binding Recipes}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout BackgroundColor="#eee"
                                              Orientation="Vertical">
                                     <StackLayout Orientation="Horizontal">
-                                        <Image Source="{Binding image}" />
+                                        <Frame WidthRequest="25" 
+                                               HeightRequest="25" 
+                                               CornerRadius="35"
+                                               Padding="0" 
+                                               Margin="0">
+                                            <Image Source="{Binding Uri}"
+                                                   WidthRequest="25" 
+                                                   HeightRequest="25"
+                                                   Aspect="AspectFill"/>
+                                        </Frame>
                                         <Label mvx:Bi.nd="Text Label, Mode=TwoWay"
-                                               TextColor="#f35e20" />
-                                        <Label Text="FF"
+                                               TextColor="#182655"
+                                               FontSize="12"/>
+                                        <Label mvx:Bi.nd="Text Calories, Mode=TwoWay"
                                                HorizontalOptions="EndAndExpand"
-                                               TextColor="#503026" />
+                                               TextColor="#4B5472"
+                                               FontSize="10"/>
                                     </StackLayout>
                                 </StackLayout>
                             </ViewCell>

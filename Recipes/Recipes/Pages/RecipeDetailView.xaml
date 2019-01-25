@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<views:MvxContentPage     
+<views:MvxTabbedPage   
     xmlns:viewModels="clr-namespace:Recipes.ViewModels;assembly=Recipes"
     x:TypeArguments="viewModels:RecipeDetailViewModel"
     xmlns="http://xamarin.com/schemas/2014/forms" 
@@ -7,13 +7,49 @@
     xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
     xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
     x:Class="Recipes.Pages.RecipeDetailView">
-    <ContentPage.Content>
+    <ContentPage Title="Ingredients">
         <StackLayout Padding="12,12">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Image Source="settings.png" WidthRequest="50" HeightRequest="50"></Image>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="40" 
+                       HeightRequest="40">
+                <Frame WidthRequest="40" 
+                       HeightRequest="40"
+                       CornerRadius="35"
+                       Padding="0"
+                       Margin="0">
+                    <Image Source="https://www.edamam.com/web-img/7a2/7a2f41a7891e8a8f8a087a96930c6463.jpg"
+                           WidthRequest="25"
+                           HeightRequest="25"
+                           Aspect="AspectFill"/>
+                </Frame>
             </StackLayout>
             <StackLayout HorizontalOptions="Start">
                 <Label Text="Ingredients:" TextColor="#031A68" FontSize="11"/>
+            </StackLayout>
+            <StackLayout>
+                <ListView  x:Name="listView"
+                           ItemsSource="{Binding Ingredients}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor="#FFFFFF"
+                                             Orientation="Vertical"
+                                             HeightRequest="10"
+                                             WidthRequest="10"
+                                             Padding="5">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Text}"
+                                               TextColor="#182655"
+                                               FontSize="9"/>
+                                        <Label Text="{Binding Weight}"
+                                               TextColor="#4B5472"
+                                               FontSize="9"
+                                               HorizontalOptions="End"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
             <StackLayout HorizontalOptions="Center">
                 <Button Text="Settings" 
@@ -25,5 +61,52 @@
                 </Button>
             </StackLayout>
         </StackLayout>
-    </ContentPage.Content>
-</views:MvxContentPage>
+    </ContentPage>
+    <ContentPage Title="Nutrition information">
+        <StackLayout>
+            <StackLayout>
+                <ListView  x:Name="listViewNutrional"
+                           ItemsSource="{Binding ListNutrients}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout BackgroundColor="#FFFFFF"
+                                             Orientation="Vertical"
+                                             HeightRequest="10"
+                                             WidthRequest="10"
+                                             Padding="5">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding titleNutrient}"
+                                               TextColor="#182655"
+                                               FontSize="11"/>
+                                        <StackLayout Padding="5">
+                                            <Label Text="{Binding Label}"
+                                               TextColor="#4B5472"
+                                               FontSize="9"/>
+                                            <Label Text="{Binding Quantity}"
+                                               TextColor="#4B5472"
+                                               FontSize="9"/>
+                                            <Label Text="{Binding Unit}"
+                                               TextColor="#4B5472"
+                                               FontSize="9"/>
+                                        </StackLayout>
+                                        
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout HorizontalOptions="Center">
+                <Button Text="Settings" 
+                            x:Name="BtnSettings" 
+                            FontSize="8" 
+                            HeightRequest="30"
+                            WidthRequest="100"
+                            mvx:Bi.nd="Command ToSettingsCommand">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage>
+</views:MvxTabbedPage>

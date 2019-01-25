@@ -7,6 +7,12 @@ namespace Recipes.Model
 {
     public partial class Total
     {
+        public Total() { }
+        public Total(string LabelT, double QuantityT, Unit UnitT) {
+            Label = LabelT;
+            Quantity = QuantityT;
+            Unit = UnitT;
+        }
         [JsonProperty("label")]
         public string Label { get; set; }
 
@@ -15,5 +21,6 @@ namespace Recipes.Model
 
         [JsonProperty("unit")]
         public Unit Unit { get; set; }
+
     }
 }

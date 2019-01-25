@@ -3,7 +3,7 @@ using Recipes.ViewModels;
 
 namespace Recipes.Pages
 {
-    public partial class RecipeDetailView : MvxContentPage<RecipeDetailViewModel>
+    public partial class RecipeDetailView : MvxTabbedPage<RecipeDetailViewModel>
     {
         public RecipeDetailView()
         {
