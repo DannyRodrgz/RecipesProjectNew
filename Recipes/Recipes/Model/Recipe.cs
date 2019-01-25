@@ -5,18 +5,19 @@ using System.Text;
 
 namespace Recipes.Model
 {
-    public class Recipe : IRecipe
+    public class Ingredients : IRecipe
     {
-        public Recipe ()
+        public Ingredients ()
         {
 
         }
-
-        public Recipe(string LabelR, double CaloriesR)
+        public Ingredients(string LabelR, double CaloriesR, Uri UriR)
         {
             Label = LabelR;
             Calories = CaloriesR;
+            Uri = UriR;
         }
+
         [JsonProperty("uri")]
         public Uri Uri { get; set; }
 
@@ -51,7 +52,7 @@ namespace Recipes.Model
         public string[] IngredientLines { get; set; }
 
         [JsonProperty("ingredients")]
-        public Ingredient[] Ingredients { get; set; }
+        public Ingredient[] IngredientsRecipe { get; set; }
 
         [JsonProperty("calories")]
         public double Calories { get; set; }

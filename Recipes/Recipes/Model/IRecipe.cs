@@ -41,7 +41,7 @@ namespace Recipes.Model
         string[] IngredientLines { get; set; }
 
         [JsonProperty("ingredients")]
-        Ingredient[] Ingredients { get; set; }
+        Ingredient[] IngredientsRecipe { get; set; }
 
         [JsonProperty("calories")]
         double Calories { get; set; }

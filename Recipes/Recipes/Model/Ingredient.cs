@@ -7,6 +7,16 @@ namespace Recipes.Model
 {
     public partial class Ingredient
     {
+        public Ingredient(string TextIngredient, double WeightIngredient)
+        {
+            Text = TextIngredient;
+            Weight = WeightIngredient;
+        }
+
+        public Ingredient()
+        {
+
+        }
         [JsonProperty("text")]
         public string Text { get; set; }
 

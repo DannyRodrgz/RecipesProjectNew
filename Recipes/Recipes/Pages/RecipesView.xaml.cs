@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Forms.Views;
 using Recipes.ViewModels;
+using Xamarin.Forms;
 
 namespace Recipes.Pages
 {
@@ -9,5 +10,10 @@ namespace Recipes.Pages
 		{
 			InitializeComponent ();
 		}
+
+        private void RecipeSelected (object sender, SelectedItemChangedEventArgs e)
+        {
+
+        }
 	}
 }
