@@ -7,7 +7,13 @@
     xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
     xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
     xmlns:customview="clr-namespace:Recipes"
-    x:Class="Recipes.Pages.RecipeDetailView">
+    x:Class="Recipes.Pages.RecipeDetailView"    
+    NavigationPage.HasNavigationBar="False">
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Name="Settings" Order="Primary" Icon="set.png" Text="Settings" Priority="0" mvx:Bi.nd="Command ToSettingsCommand" />
+        <ToolbarItem Name="Logout" Order="Primary" Icon="logout.png" Text="Logout" Priority="1" mvx:Bi.nd="Command LogoutCommand" />
+        <ToolbarItem Name="Logout" Order="Primary" Icon="sear.png" Text="Logout" Priority="2" mvx:Bi.nd="Command ToSearchCommand" />
+    </TabbedPage.ToolbarItems>
     <ContentPage Title="Ingredients">
         <StackLayout Padding="12,12">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" WidthRequest="40" 
@@ -58,7 +64,7 @@
                         FontSize="8" 
                         HeightRequest="30"
                         WidthRequest="100"
-                        mvx:Bi.nd="Command ToSettingsCommand">
+                        mvx:Bi.nd="Command ToSettingsTestCommand">
                 </Button>
             </StackLayout>
             <StackLayout VerticalOptions="StartAndExpand" Padding="10" Spacing="10">
@@ -69,7 +75,7 @@
                                          CustomBorderWidth="4"
                                          CustomBackgroundColor="White"
                                          VerticalOptions="Center"
-                                         mvx:Bi.nd="Command ToSettingsCommand"
+                                         mvx:Bi.nd="Command ToSettingsTestCommand"
                                          HeightRequest="40"
                                          WidthRequest="10"/>
 

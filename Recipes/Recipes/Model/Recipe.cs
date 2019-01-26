@@ -5,13 +5,13 @@ using System.Text;
 
 namespace Recipes.Model
 {
-    public class Ingredients : IRecipe
+    public class Recipe : IRecipe
     {
-        public Ingredients ()
+        public Recipe ()
         {
 
         }
-        public Ingredients(string LabelR, double CaloriesR, Uri UriR)
+        public Recipe(string LabelR, double CaloriesR, Uri UriR)
         {
             Label = LabelR;
             Calories = CaloriesR;

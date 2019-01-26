@@ -24,6 +24,10 @@ namespace Recipes.ViewModels
         {
             LoginService = loginService;
             navigationService = navigation;
+            ToolbarItem navPage = new ToolbarItem
+            {
+                Text = "sfds"
+            };
         }
 
         public override void Prepare(UserModel parameter)

@@ -6,6 +6,7 @@ using Recipes.Services;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Recipes.ViewModels
 {
@@ -51,15 +52,50 @@ namespace Recipes.ViewModels
         {
             get
             {
-                logoutCommand = logoutCommand ?? new MvxCommand(logout);
+                logoutCommand = logoutCommand ?? new MvxCommand(Logout);
                 return logoutCommand;
             }
         }
 
-        private void logout()
+        private void Logout()
         {
             service.logout();
             navigationService.Navigate<LoginViewModel, UserModel>(new UserModel());
+        }
+
+        private ICommand toSearchCommand;
+        public ICommand ToSearchCommand
+        {
+            get
+            {
+                toSearchCommand = toSearchCommand ?? new MvxCommand(ToSearch);
+                return toSearchCommand;
+            }
+        }
+
+        private void ToSearch()
+        {
+            navigationService.Navigate<RecipesViewModel, UserModel>(new UserModel());
+        }
+
+        private ICommand logoutIconCommand;
+        public ICommand LogoutIconCommand
+        {
+            get
+            {
+                logoutIconCommand = logoutIconCommand ?? new MvxCommand(LogoutIcon);
+                return logoutIconCommand;
+            }
+        }
+
+        private async void LogoutIcon()
+        {
+            bool logout = await Application.Current.MainPage.DisplayAlert("Recipes", "Sign out", "Ok", "Cancel");
+            if (logout)
+            {
+                service.logout();
+                await navigationService.Navigate<LoginViewModel, UserModel>(new UserModel());
+            }
         }
     }
 }

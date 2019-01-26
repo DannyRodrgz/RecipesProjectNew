@@ -191,5 +191,14 @@
   <ItemGroup>
     <BundleResource Include="Resources\settings.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\set.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sear.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

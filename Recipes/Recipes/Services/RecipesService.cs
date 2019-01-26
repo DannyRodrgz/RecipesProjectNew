@@ -89,11 +89,11 @@ namespace Recipes.Services
             }
         }*/
         
-        public ObservableCollection<Ingredients> Recipes { get; set; }
+        public ObservableCollection<Recipe> Recipes { get; set; }
 
-        public Ingredients getSpecificRecipe(string label)
+        public Recipe getSpecificRecipe(string label)
         {
-            Ingredients SpecificRecipe = null;
+            Recipe SpecificRecipe = null;
             for (int index = 0; index < Recipes.Count; index++)
             {
                 if (Recipes[index].Label.Equals(label))
@@ -104,12 +104,12 @@ namespace Recipes.Services
             return SpecificRecipe;
         }
 
-        public ObservableCollection<Ingredients> getAllRecipes(string ingredient)
+        public ObservableCollection<Recipe> getAllRecipes(string ingredient)
         {
             return Recipes;
         }
 
-        public ObservableCollection<Ingredients> getAllRecipes()
+        public ObservableCollection<Recipe> getAllRecipes()
         {
             return Recipes;
         }

@@ -6,16 +6,19 @@ using Recipes.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Recipes.ViewModels
 {
-    public class RecipeDetailViewModel : MvxViewModel<UserModel>
+    public class RecipeDetailViewModel : MvxViewModel<Recipe>
     {
-        private UserModel user;
+        private Recipe recipe;
         readonly IRecipeDetailService service;
+        readonly ISettingsService settingsService;
         private readonly IMvxNavigationService navigationService;
         Ingredient ing1;
         Ingredient ing2;
@@ -24,9 +27,10 @@ namespace Recipes.ViewModels
         SpecificDigest nutr1;
         SpecificDigest nutr2;
 
-        public RecipeDetailViewModel(IRecipeDetailService recipeDetailService, IMvxNavigationService navigation)
+        public RecipeDetailViewModel(IRecipeDetailService recipeDetailService, ISettingsService settingsService, IMvxNavigationService navigation)
         {
             service = recipeDetailService;
+            this.settingsService = settingsService;
             navigationService = navigation;
             ing1 = new Ingredient("1 whole chicken", 1700.9713875);
             ing2 = new Ingredient("Kosher salt and freshly ground black pepper", 10.205828325);
@@ -35,9 +39,10 @@ namespace Recipes.ViewModels
             nutr1 = new SpecificDigest("ENERC_KCAL", tot1);
             nutr2 = new SpecificDigest("FAT", tot2);
         }
-        public override void Prepare(UserModel parameter)
+        public override void Prepare(Recipe parameter)
         {
-            user = parameter;
+            recipe = parameter;
+            Debug.WriteLine("RECIPEEEEEEEE" + recipe.Label);
         }
         public override async Task Initialize()
         {
@@ -46,17 +51,17 @@ namespace Recipes.ViewModels
             listNutrients = new ObservableCollection<SpecificDigest>();
         }
 
-        private ICommand toSettingsCommand;
-        public ICommand ToSettingsCommand
+        private ICommand toSettingsTestCommand;
+        public ICommand ToSettingsTestCommand
         {
             get
             {
-                toSettingsCommand = toSettingsCommand ?? new MvxCommand(ToSettings);
-                return toSettingsCommand;
+                toSettingsTestCommand = toSettingsTestCommand ?? new MvxCommand(ToSettingsTest);
+                return toSettingsTestCommand;
             }
         }
 
-        public void ToSettings()
+        public void ToSettingsTest()
         {
             ingredients.Add(ing1);
             ingredients.Add(ing2);
@@ -87,6 +92,56 @@ namespace Recipes.ViewModels
                 listNutrients = value;
                 RaisePropertyChanged(() => ListNutrients);
             }
+        }
+
+        private ICommand toSettingsCommand;
+        public ICommand ToSettingsCommand
+        {
+            get
+            {
+                toSettingsCommand = toSettingsCommand ?? new MvxCommand(ToSettings);
+                return toSettingsCommand;
+            }
+        }
+
+        private void ToSettings()
+        {
+            navigationService.Navigate<SettingsViewModel, UserModel>(new UserModel());
+        }
+
+        private ICommand logoutCommand;
+        public ICommand LogoutCommand
+        {
+            get
+            {
+                logoutCommand = logoutCommand ?? new MvxCommand(Logout);
+                return logoutCommand;
+            }
+        }
+
+        private async void Logout()
+        {
+            bool logout = await Application.Current.MainPage.DisplayAlert("Recipes", "Sign out", "Ok", "Cancel");
+            if (logout)
+            {
+                settingsService.logout();
+                await navigationService.Navigate<LoginViewModel, UserModel>(new UserModel());
+            }
+        }
+
+        private ICommand toSearchCommand;
+        public ICommand ToSearchCommand
+        {
+            get
+            {
+                toSearchCommand = toSearchCommand ?? new MvxCommand(ToSearch);
+                return toSearchCommand;
+            }
+        }
+
+        private void ToSearch()
+        {
+            navigationService.Navigate<RecipesViewModel, UserModel>(new UserModel());
         }
     }
 }
