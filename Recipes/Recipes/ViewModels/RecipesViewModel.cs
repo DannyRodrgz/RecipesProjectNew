@@ -28,8 +28,8 @@ namespace Recipes.ViewModels
             this.settingsService = settingsService;
             navigationService = navigation;
 
-            recipe1 = new Recipe("Sopa de mani", 12.5, new Uri("https://www.edamam.com/web-img/7a2/7a2f41a7891e8a8f8a087a96930c6463.jpg"));
-            recipe2 = new Recipe("Chanka", 17.5, new Uri("https://www.edamam.com/web-img/7a2/7a2f41a7891e8a8f8a087a96930c6463.jpg"));
+            recipe1 = new Recipe("Sopa de mani", 12.5, new Uri("https://www.edamam.com/web-img/7a2/7a2f41a7891e8a8f8a087a96930c6463.jpg"), new Uri("http://www.seriouseats.com/recipes/2011/12/chicken-vesuvio-recipe.html"));
+            recipe2 = new Recipe("Chanka", 17.5, new Uri("https://www.edamam.com/web-img/7a2/7a2f41a7891e8a8f8a087a96930c6463.jpg"), new Uri("http://www.seriouseats.com/recipes/2011/12/chicken-vesuvio-recipe.html"));
             
         }
 

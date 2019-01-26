@@ -11,11 +11,12 @@ namespace Recipes.Model
         {
 
         }
-        public Recipe(string LabelR, double CaloriesR, Uri UriR)
+        public Recipe(string LabelR, double CaloriesR, Uri UriR, Uri Url)
         {
             Label = LabelR;
             Calories = CaloriesR;
             Uri = UriR;
+            this.Url = Url;
         }
 
         [JsonProperty("uri")]
