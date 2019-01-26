@@ -8,7 +8,7 @@ namespace Recipes.Model
     public partial class Hit
     {
         [JsonProperty("recipe")]
-        public Ingredients Recipe { get; set; }
+        public Recipe Recipe { get; set; }
 
         [JsonProperty("bookmarked")]
         public bool Bookmarked { get; set; }

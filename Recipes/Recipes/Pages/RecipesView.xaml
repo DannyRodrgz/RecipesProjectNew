@@ -6,7 +6,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"    
     xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
     xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    xmlns:converters="clr-namespace:Recipes.Converters;assembly=Recipes"
+    xmlns:behaviors="clr-namespace:Recipes"
     x:Class="Recipes.Pages.RecipesView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Settings" Order="Primary" Icon="set.png" Text="Settings" Priority="0" mvx:Bi.nd="Command ToSettingsCommand" />
+        <ToolbarItem Name="Logout" Order="Primary" Icon="logout.png" Text="Logout" Priority="1" mvx:Bi.nd="Command LogoutCommand" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="12,12">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
@@ -58,6 +64,16 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="Center">
+                <Button Text="Settings" 
+                        x:Name="BtnSave" 
+                        FontSize="8" 
+                        HeightRequest="30"
+                        WidthRequest="100"
+                        mvx:Bi.nd="Command GetSelectedRecipeCommand">
+                </Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
