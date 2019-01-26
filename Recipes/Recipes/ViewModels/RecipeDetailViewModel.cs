@@ -4,10 +4,7 @@ using MvvmCross.ViewModels;
 using Recipes.Model;
 using Recipes.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -17,6 +14,7 @@ namespace Recipes.ViewModels
     public class RecipeDetailViewModel : MvxViewModel<Recipe>
     {
         private Recipe recipe;
+        private Recipe recipeTest;
         readonly IRecipeDetailService service;
         readonly ISettingsService settingsService;
         private readonly IMvxNavigationService navigationService;
@@ -38,11 +36,11 @@ namespace Recipes.ViewModels
             tot2 = new Total("Fat", 174.35943285279748, Unit.G);
             nutr1 = new SpecificDigest("ENERC_KCAL", tot1);
             nutr2 = new SpecificDigest("FAT", tot2);
+            recipeTest = new Recipe("Sopa de mani", 12.5, new Uri("https://www.edamam.com/web-img/7a2/7a2f41a7891e8a8f8a087a96930c6463.jpg"), new Uri("http://www.seriouseats.com/recipes/2011/12/chicken-vesuvio-recipe.html"));
         }
         public override void Prepare(Recipe parameter)
         {
             recipe = parameter;
-            Debug.WriteLine("RECIPEEEEEEEE" + recipe.Label);
         }
         public override async Task Initialize()
         {
@@ -63,11 +61,11 @@ namespace Recipes.ViewModels
 
         public void ToSettingsTest()
         {
-            ingredients.Add(ing1);
+            Device.OpenUri(recipeTest.Url);
+            /*ingredients.Add(ing1);
             ingredients.Add(ing2);
             listNutrients.Add(nutr1);
-            listNutrients.Add(nutr2);
-            // navigationService.Navigate<SettingsViewModel, UserModel>(new UserModel());
+            listNutrients.Add(nutr2);*/
         }
 
         private ObservableCollection<Ingredient> ingredients;

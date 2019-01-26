@@ -23,11 +23,14 @@
                        CornerRadius="35"
                        Padding="0"
                        Margin="0">
-                    <Image Source="https://www.edamam.com/web-img/7a2/7a2f41a7891e8a8f8a087a96930c6463.jpg"
+                    <Image Source="{Binding Uri}"
                            WidthRequest="25"
                            HeightRequest="25"
                            Aspect="AspectFill"/>
                 </Frame>
+            </StackLayout>
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="{Binding Label}" TextColor="#031A68" FontSize="18"/>
             </StackLayout>
             <StackLayout HorizontalOptions="Start">
                 <Label Text="Ingredients:" TextColor="#031A68" FontSize="11"/>
@@ -78,8 +81,6 @@
                                          mvx:Bi.nd="Command ToSettingsTestCommand"
                                          HeightRequest="40"
                                          WidthRequest="10"/>
-
-
             </StackLayout>
         </StackLayout>
     </ContentPage>
