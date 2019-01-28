@@ -30,9 +30,6 @@ namespace Recipes.Model
         [JsonProperty("daily")]
         public double Daily { get; set; }
 
-        [JsonProperty("unit")]
-        public Unit Unit { get; set; }
-
         [JsonProperty("sub", NullValueHandling = NullValueHandling.Ignore)]
         public Digest[] Sub { get; set; }
     }

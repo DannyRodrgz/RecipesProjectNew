@@ -20,22 +20,15 @@ namespace Recipes.ViewModels
         readonly IRecipesService recipesService;
         readonly ISettingsService settingsService;
         private readonly IMvxNavigationService navigationService;
-        Recipe recipe1;
-        Recipe recipe2;
         public RecipesViewModel(IRecipesService recipesService, ISettingsService settingsService,  IMvxNavigationService navigation)
         {
             this.recipesService = recipesService;
             this.settingsService = settingsService;
             navigationService = navigation;
-
-            recipe1 = new Recipe("Sopa de mani", 12.5, new Uri("https://www.edamam.com/web-img/7a2/7a2f41a7891e8a8f8a087a96930c6463.jpg"), new Uri("http://www.seriouseats.com/recipes/2011/12/chicken-vesuvio-recipe.html"));
-            recipe2 = new Recipe("Chanka", 17.5, new Uri("https://www.edamam.com/web-img/7a2/7a2f41a7891e8a8f8a087a96930c6463.jpg"), new Uri("http://www.seriouseats.com/recipes/2011/12/chicken-vesuvio-recipe.html"));
-            
         }
 
         public override void Prepare()
         {
-            // first callback. Initialize parameter-agnostic stuff here
         }
 
         public override void Prepare(UserModel parameter)
@@ -74,35 +67,19 @@ namespace Recipes.ViewModels
                 RaisePropertyChanged(() => Recipes);
             }
         }
-
-        private ICommand getRecipesCommand;
         public ICommand GetRecipesCommand
         {
             get
             {
-                getRecipesCommand = getRecipesCommand ?? new MvxCommand(GetRecipes);
-                return getRecipesCommand;
+                return new MvxCommand(async () =>
+                {
+                    Recipes.Clear();
+                    Recipes = await recipesService.SearchRecipes(searchString);
+                    if(Recipes.Count== 0) {
+                        await Application.Current.MainPage.DisplayAlert("Recipes", "No results for your search", "Ok");
+                    }
+                });
             }
-        }
-
-        public void GetRecipes()
-        {
-           // recipes.Add(recipe1);
-            // recipes.Add(recipe2);
-
-            // navigationService.Navigate<RecipeDetailViewModel, UserModel>(new UserModel());
-            /* ListView listView = new ListView();
-             listView.ItemsSource = recipes;
-             navigationService.Navigate<RecipeDetailViewModel, UserModel>(new UserModel());
-             /*if (!string.IsNullOrEmpty(SearchString))
-             {
-                 var result = await service.GetRecipesResult();
-                 if (result != null)
-                 {
-                     var res = result.hits[0].Recipe.Label;
-                 }
-                 // Recipes = await service.SearchRecipes(SearchString);
-             }    else {  }*/
         }
 
         private Recipe selectedRecipe;
@@ -131,7 +108,6 @@ namespace Recipes.ViewModels
 
         private void getSelectedRecipe()
         {
-            selectedRecipe = recipe1;
             navigationService.Navigate<RecipeDetailViewModel, Recipe>(new Recipe());
         }
 
@@ -169,5 +145,6 @@ namespace Recipes.ViewModels
                 await navigationService.Navigate<LoginViewModel, UserModel>(new UserModel());
             }
         }
+        
     }
 }

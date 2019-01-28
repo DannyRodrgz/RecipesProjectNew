@@ -11,16 +11,12 @@ namespace Recipes.Model
         public Total(string LabelT, double QuantityT, Unit UnitT) {
             Label = LabelT;
             Quantity = QuantityT;
-            Unit = UnitT;
         }
         [JsonProperty("label")]
         public string Label { get; set; }
 
         [JsonProperty("quantity")]
         public double Quantity { get; set; }
-
-        [JsonProperty("unit")]
-        public Unit Unit { get; set; }
 
     }
 }

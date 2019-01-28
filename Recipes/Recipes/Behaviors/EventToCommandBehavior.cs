@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Recipes
+namespace Recipes.Behaviors
 {
     public class EventToCommandBehavior : BehaviorBase<View>
     {

@@ -1,25 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-using Android.App;
 using Android.Content;
 using Android.Graphics.Drawables;
-using Android.OS;
-using Android.Runtime;
 using Android.Util;
-using Android.Views;
-using Android.Widget;
-using Recipes;
-using Recipes.Droid;
+using Recipes.CustomRederers;
+using Recipes.Droid.CustomRederers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 
 [assembly: ExportRenderer(typeof(CustomButton), typeof(CustomButtonRenderer))]
-namespace Recipes.Droid
+namespace Recipes.Droid.CustomRederers
 {
     public class CustomButtonRenderer : ButtonRenderer
     {

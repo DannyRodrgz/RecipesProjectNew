@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace Recipes
+namespace Recipes.CustomRederers
 {
     public class CustomButton : Button
     {
