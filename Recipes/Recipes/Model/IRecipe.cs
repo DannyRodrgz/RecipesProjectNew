@@ -28,12 +28,6 @@ namespace Recipes.Model
         [JsonProperty("yield")]
         long Yield { get; set; }
 
-        [JsonProperty("dietLabels")]
-        DietLabel[] DietLabels { get; set; }
-
-        [JsonProperty("healthLabels")]
-        HealthLabel[] HealthLabels { get; set; }
-
         [JsonProperty("cautions")]
         string[] Cautions { get; set; }
 

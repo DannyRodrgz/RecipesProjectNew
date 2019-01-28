@@ -22,12 +22,10 @@ namespace Recipes.ViewModels
         }
         public override void Prepare()
         {
-            // first callback. Initialize parameter-agnostic stuff here
         }
 
         public override void Prepare(UserModel parameter)
         {
-            // receive and store the parameter here
             user = parameter;
         }
         public override async Task Initialize()

@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using Recipes;
-using Recipes.iOS;
-using UIKit;
+﻿using System.ComponentModel;
+using Recipes.CustomRederers;
+using Recipes.iOS.CustomRederers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(CustomButton), typeof(CustomButtonRenderer))]
-namespace Recipes.iOS
+namespace Recipes.iOS.CustomRederers
 {
     public class CustomButtonRenderer : ButtonRenderer
     {

@@ -7,11 +7,7 @@ namespace Recipes.Services
 {
     public interface IRecipesService
     {
-        ObservableCollection<Recipe> Recipes { get; set; }
         Recipe getSpecificRecipe(string label);
-        ObservableCollection<Recipe> getAllRecipes(string ingredient);
-        ObservableCollection<Recipe> getAllRecipes();
-        // Task<List<Recipe>> SearchRecipes(string ingredient);
-        Task<Result> GetRecipesResult();
+        Task<ObservableCollection<Recipe>> SearchRecipes(string ingredient);
     }
 }

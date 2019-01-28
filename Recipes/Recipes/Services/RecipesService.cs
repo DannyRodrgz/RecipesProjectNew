@@ -1,10 +1,7 @@
 ﻿using ModernHttpClient;
-using MvvmCross;
-using MvvmCross.Commands;
 using Newtonsoft.Json;
 using Recipes.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Net.Http;
@@ -17,37 +14,15 @@ namespace Recipes.Services
         const string BaseURL = "https://api.edamam.com";
         const string APP_ID = "7af53792";
         const string API_KEY = "c9e91b62013333bebd3abf3adc20e0e8";
-        // /search? q = chicken & app_id = 7af53792&app_key=c9e91b62013333bebd3abf3adc20e0e8
         private static HttpClient client;
+        public ObservableCollection<Recipe> recipes;
 
         public RecipesService()
         {
+            recipes = new ObservableCollection<Recipe>();
         }
 
-        public async Task<Result> GetRecipesResult() {
-
-            var res = new Result();
-            //try
-            //{
-                client = new HttpClient();
-                var response = await client.GetAsync("https://api.edamam.com/search?q=chicken&app_id=7af53792&app_key=c9e91b62013333bebd3abf3adc20e0e8");
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    Debug.WriteLine("STATUSSS CATCH" + response.Content.ReadAsStringAsync());
-                    var jsonString = await response.Content.ReadAsStringAsync();
-                    res =  Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(jsonString);
-                }
-            return res;
-          /*  }
-            catch {
-                Debug.WriteLine("SERVICEEEEE CATCH" + res);
-                return res;
-            }
-            Debug.WriteLine("SERVICEEEEE other" + res);
-            return res;*/
-        }
-
-        /*private HttpClient BaseClient
+        private HttpClient BaseClient
         {
             get
             {
@@ -57,41 +32,42 @@ namespace Recipes.Services
                 });
             }
         }
-        
-        public async Task<List<Recipe>> SearchRecipes(string ingredient)
+
+        public Recipe getSpecificRecipe(string label)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<ObservableCollection<Recipe>> SearchRecipes(string ingredient)
         {
             try
             {
-                Debug.WriteLine("SERVICEEEEEE" + ingredient);
-                var res = await BaseClient.GetAsync(string.Format("/search?q="+ ingredient + "&app_id=7af53792&app_key=c9e91b62013333bebd3abf3adc20e0e8", API_KEY,
+                var response = await BaseClient.GetAsync(string.Format("/search?q=" + ingredient + "&app_id=7af53792&app_key=c9e91b62013333bebd3abf3adc20e0e8", API_KEY,
                     ingredient));
-                res.EnsureSuccessStatusCode();
+                response.EnsureSuccessStatusCode();
 
-                var json = await res.Content.ReadAsStringAsync();
+                var json = await response.Content.ReadAsStringAsync();
 
                 if (string.IsNullOrEmpty(json)) return null;
 
                 var allRecipesResult = JsonConvert.DeserializeObject<Result>(json);
 
-                var hitsList = allRecipesResult.hits;
-
-                Debug.WriteLine("SERVICEEEEEE" + res.ToString());
-
-                List<Recipe> recipeList = new List<Recipe>();
-                for (int i=0; i<hitsList.Count; i++) {
-                    recipeList.Add(hitsList[i].Recipe);
+                var result = new Result(allRecipesResult.hits);
+                
+                for (int i=0; i<result.hits.Count; i++)
+                {
+                    recipes.Add(result.hits[i].Recipe);
                 }
-                return recipeList;
+                return recipes;
             }
             catch (Exception ex)
             {
+                Debug.WriteLine("EXCEPTION" + ex);
                 return null;
             }
-        }*/
+        }
         
-        public ObservableCollection<Recipe> Recipes { get; set; }
-
-        public Recipe getSpecificRecipe(string label)
+        /*public Recipe getSpecificRecipe(string label)
         {
             Recipe SpecificRecipe = null;
             for (int index = 0; index < Recipes.Count; index++)
@@ -102,16 +78,6 @@ namespace Recipes.Services
                 }
             }
             return SpecificRecipe;
-        }
-
-        public ObservableCollection<Recipe> getAllRecipes(string ingredient)
-        {
-            return Recipes;
-        }
-
-        public ObservableCollection<Recipe> getAllRecipes()
-        {
-            return Recipes;
-        }
+        }*/
     }
 }

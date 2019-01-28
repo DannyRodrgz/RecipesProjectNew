@@ -6,12 +6,11 @@ namespace Recipes.Model
 {
     public class Result
     {
-        public string q { get; set; }
-        public int from { get; set; }
-        public int to { get; set; }
-        public Params @params { get; set; }
-        public bool more { get; set; }
-        public int count { get; set; }
+        public Result() { }
+
+        public Result(List<Hit> hits) {
+            this.hits = hits;
+        }
         public List<Hit> hits { get; set; }
     }
 }

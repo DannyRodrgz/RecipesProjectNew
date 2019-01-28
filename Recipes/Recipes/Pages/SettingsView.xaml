@@ -6,7 +6,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
     xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
-    x:Class="Recipes.Pages.SettingsView">
+    x:Class="Recipes.Pages.SettingsView"    
+    NavigationPage.HasBackButton="False">
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Logout" Order="Primary" Icon="sear.png" Text="Logout" Priority="0" mvx:Bi.nd="Command ToSearchCommand" />
         <ToolbarItem Name="Logout" Order="Primary" Icon="logout.png" Text="Logout" Priority="1" mvx:Bi.nd="Command LogoutIconCommand" />
