@@ -20,11 +20,13 @@ namespace Recipes.ViewModels
         readonly IRecipesService recipesService;
         readonly ISettingsService settingsService;
         private readonly IMvxNavigationService navigationService;
-        public RecipesViewModel(IRecipesService recipesService, ISettingsService settingsService,  IMvxNavigationService navigation)
+        public RecipesViewModel(IRecipesService recipesService, 
+            ISettingsService settingsService,  
+            IMvxNavigationService navigationService)
         {
             this.recipesService = recipesService;
             this.settingsService = settingsService;
-            navigationService = navigation;
+            this.navigationService = navigationService;
         }
 
         public override void Prepare()
@@ -42,6 +44,18 @@ namespace Recipes.ViewModels
             searchString = "";
             recipes = new ObservableCollection<Recipe>();
             selectedRecipe = new Recipe();
+        }
+
+        private bool searching;
+
+        public bool Searching
+        {
+            get { return searching; }
+            set
+            {
+                searching = value;
+                RaisePropertyChanged(() => Searching);
+            }
         }
 
         private string searchString;
@@ -73,8 +87,10 @@ namespace Recipes.ViewModels
             {
                 return new MvxCommand(async () =>
                 {
+                    Searching = true;
                     Recipes.Clear();
                     Recipes = await recipesService.SearchRecipes(searchString);
+                    Searching = false;
                     if(Recipes.Count== 0) {
                         await Application.Current.MainPage.DisplayAlert("Recipes", "No results for your search", "Ok");
                     }
@@ -91,8 +107,6 @@ namespace Recipes.ViewModels
             {
                 selectedRecipe = value;
                 RaisePropertyChanged(() => SelectedRecipe);
-
-                GetSelectedRecipeCommand.Execute(null);
             }
         }
 
@@ -101,14 +115,27 @@ namespace Recipes.ViewModels
         {
             get
             {
-                getSelectedRecipeCommand = getSelectedRecipeCommand ?? new MvxCommand(getSelectedRecipe);
+                getSelectedRecipeCommand = getSelectedRecipeCommand ?? new MvxCommand<Recipe>(GetSelectedRecipe);
                 return getSelectedRecipeCommand;
             }
         }
 
-        private void getSelectedRecipe()
+        private void GetSelectedRecipe(Recipe recipeNew)
         {
-            navigationService.Navigate<RecipeDetailViewModel, Recipe>(new Recipe());
+            navigationService.Navigate<RecipeDetailViewModel, Recipe>(recipeNew);
+        }
+
+
+        private bool isSelected;
+
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set
+            {
+                isSelected = value;
+                RaisePropertyChanged(() => IsSelected);
+            }
         }
 
         private ICommand toSettingsCommand;
@@ -145,6 +172,7 @@ namespace Recipes.ViewModels
                 await navigationService.Navigate<LoginViewModel, UserModel>(new UserModel());
             }
         }
+
         
     }
 }

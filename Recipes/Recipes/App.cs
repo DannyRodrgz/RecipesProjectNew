@@ -10,7 +10,6 @@ namespace Recipes
     {
         public override void Initialize()
         {
-            Mvx.RegisterType<ICalculationService, CalculationService>();
             Mvx.RegisterType<ILoginService, LoginService>();
             Mvx.RegisterType<IRecipesService, RecipesService>();
             Mvx.RegisterType<IRecipeDetailService, RecipeDetailService>();

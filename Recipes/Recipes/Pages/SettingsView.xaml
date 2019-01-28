@@ -15,20 +15,20 @@
     <ContentPage.Content>
         <StackLayout Padding="15,12">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Image Source="settings.png" WidthRequest="50" HeightRequest="50"></Image>
+                <Image Source="settings.png" WidthRequest="90" HeightRequest="90"></Image>
             </StackLayout>
             <StackLayout HorizontalOptions="Start">
-                <Label Text="Username:" TextColor="#031A68" FontSize="11"/>
+                <Label Text="Username:" TextColor="#031A68" FontSize="22"/>
             </StackLayout>
             <StackLayout HorizontalOptions="Start">
-                <Label mvx:Bi.nd="Text Username, Mode=TwoWay" FontSize="10"/>
+                <Label mvx:Bi.nd="Text Username, Mode=TwoWay" FontSize="20"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Button Text="Logout" 
                         x:Name="BtnLogout" 
-                        FontSize="8"                       
-                        HeightRequest="30"
-                        WidthRequest="100"                        
+                        FontSize="16"                       
+                        HeightRequest="40"
+                        WidthRequest="120"                        
                         mvx:Bi.nd="Command LogoutCommand">
                 </Button>
             </StackLayout>

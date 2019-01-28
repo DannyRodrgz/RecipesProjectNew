@@ -14,19 +14,19 @@
     <ContentPage.Content>
         <StackLayout Padding="12,12">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Image Source="recipes.png" WidthRequest="50" HeightRequest="50"></Image>
+                <Image Source="recipes.png" WidthRequest="90" HeightRequest="90"></Image>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Label TextColor="#031A68" FontSize="18" Text="LOGIN" />
+                <Label TextColor="#031A68" FontSize="20" Text="LOGIN" />
             </StackLayout>
-            <Entry x:Name="Name" mvx:Bi.nd="Text Username, Mode=TwoWay" Placeholder="Username" Keyboard="Email" FontSize="10"></Entry>
-            <Entry x:Name="Password" mvx:Bi.nd="Text Password, Mode=TwoWay" Placeholder="Password" IsPassword="true" FontSize="10"></Entry>
+            <Entry x:Name="Name" mvx:Bi.nd="Text Username, Mode=TwoWay" Placeholder="Username" Keyboard="Email" FontSize="15"></Entry>
+            <Entry x:Name="Password" mvx:Bi.nd="Text Password, Mode=TwoWay" Placeholder="Password" IsPassword="true" FontSize="15"></Entry>
             <StackLayout HorizontalOptions="Center">
                 <Button Text="Login" 
                         x:Name="BtnSave" 
-                        FontSize="8" 
-                        HeightRequest="30"
-                        WidthRequest="100"
+                        FontSize="16" 
+                        HeightRequest="40"
+                        WidthRequest="120"
                         mvx:Bi.nd="Command SaveUserCommand">
                 </Button>
             </StackLayout>

@@ -66,18 +66,5 @@ namespace Recipes.Services
                 return null;
             }
         }
-        
-        /*public Recipe getSpecificRecipe(string label)
-        {
-            Recipe SpecificRecipe = null;
-            for (int index = 0; index < Recipes.Count; index++)
-            {
-                if (Recipes[index].Label.Equals(label))
-                {
-                    SpecificRecipe = Recipes[index];
-                }
-            }
-            return SpecificRecipe;
-        }*/
     }
 }
