@@ -12,13 +12,13 @@ namespace Recipes.ViewModels
 {
     public class SettingsViewModel : MvxViewModel<UserModel>
     {
-        readonly ISettingsService service;
+        readonly ISettingsService settingsService;
         private UserModel user;
         private readonly IMvxNavigationService navigationService;
-        public SettingsViewModel(ISettingsService settingsService, IMvxNavigationService navigation)
+        public SettingsViewModel(ISettingsService settingsService, IMvxNavigationService navigationService)
         {
-            service = settingsService;
-            navigationService = navigation;
+            this.settingsService = settingsService;
+            this.navigationService = navigationService;
         }
         public override void Prepare()
         {
@@ -57,7 +57,7 @@ namespace Recipes.ViewModels
 
         private void Logout()
         {
-            service.logout();
+            settingsService.logout();
             navigationService.Navigate<LoginViewModel, UserModel>(new UserModel());
         }
 
@@ -91,7 +91,7 @@ namespace Recipes.ViewModels
             bool logout = await Application.Current.MainPage.DisplayAlert("Recipes", "Sign out", "Ok", "Cancel");
             if (logout)
             {
-                service.logout();
+                settingsService.logout();
                 await navigationService.Navigate<LoginViewModel, UserModel>(new UserModel());
             }
         }

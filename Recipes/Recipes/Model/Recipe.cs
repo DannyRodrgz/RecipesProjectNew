@@ -10,13 +10,6 @@ namespace Recipes.Model
         public Recipe ()
         {
         }
-        public Recipe(string LabelR, double CaloriesR, Uri UriR, Uri Url)
-        {
-            Label = LabelR;
-            Calories = CaloriesR;
-            Uri = UriR;
-            this.Url = Url;
-        }
 
         [JsonProperty("uri")]
         public Uri Uri { get; set; }
@@ -66,5 +59,10 @@ namespace Recipes.Model
         [JsonProperty("digest")]
         public Digest[] Digest { get; set; }
         public double CaloriesForRecipe { get; set; }
+
+        public double RecipeCalories
+        {
+            get { return Yield / Calories; }
+        }
     }
 }

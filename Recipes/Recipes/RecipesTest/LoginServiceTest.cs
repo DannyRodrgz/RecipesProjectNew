@@ -19,7 +19,7 @@ namespace Recipes.RecipesTest
             UserModel user = new UserModel("159", "danny", "123");
             Preferences.Set("UserIdTest", user.Id);
             loginService.SaveUser(user);
-            Assert.AreEqual(Preferences.Get("UserIdTest", "defaultTest"), Preferences.Get("UserId", "default"));
+            Assert.AreEqual("159", Preferences.Get("UserId", "default"));
         }
     }
 }

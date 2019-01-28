@@ -15,19 +15,15 @@ namespace Recipes.ViewModels
 {
     public class LoginViewModel : MvxViewModel<UserModel>
     {
-        readonly ILoginService LoginService;
+        readonly ILoginService loginService;
         private string Id;
         private UserModel User;
         private readonly IMvxNavigationService navigationService;
 
-        public LoginViewModel(ILoginService loginService, IMvxNavigationService navigation)
+        public LoginViewModel(ILoginService loginService, IMvxNavigationService navigationService)
         {
-            LoginService = loginService;
-            navigationService = navigation;
-            ToolbarItem navPage = new ToolbarItem
-            {
-                Text = "sfds"
-            };
+            this.loginService = loginService;
+            this.navigationService = navigationService;
         }
 
         public override void Prepare(UserModel parameter)
@@ -39,8 +35,6 @@ namespace Recipes.ViewModels
         public async Task Initialize()
         {
             await base.Initialize();
-
-            // do the heavy work here
         }
 
         private string username;
@@ -82,7 +76,7 @@ namespace Recipes.ViewModels
             if (!string.IsNullOrEmpty(User.Name) || !string.IsNullOrEmpty(User.Password)) {
                 if (User.Name.Equals("danny") && User.Password.Equals("123"))
                 {
-                    LoginService.SaveUser(User);
+                    loginService.SaveUser(User);
                     navigationService.Navigate<RecipesViewModel, UserModel>(new UserModel());
                 } else
                 {
