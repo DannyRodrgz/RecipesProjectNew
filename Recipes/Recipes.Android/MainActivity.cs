@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using MvvmCross.Forms.Platforms.Android.Views;
 using MvvmCross.Forms.Platforms.Android.Core;
+using Xamarin.Essentials;
 
 namespace Recipes.Droid
 {
@@ -24,6 +25,14 @@ namespace Recipes.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+        }
+
+        public override void OnBackPressed()
+        {
+            var id = Preferences.Get("UserId", "default");
+            if (!id.Equals("159") || id.Equals("159")) return;
+
+            base.OnBackPressed();
         }
     }
 }

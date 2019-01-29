@@ -4,6 +4,7 @@ using MvvmCross.ViewModels;
 using Recipes.Model;
 using Recipes.Services;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -60,6 +61,18 @@ namespace Recipes.ViewModels
             }
         }
 
+        private Digest[] digest;
+
+        public Digest[] Digest
+        {
+            get { return recipe.Digest; }
+            set
+            {
+                digest = value;
+                RaisePropertyChanged(() => Digest);
+            }
+        }
+
         private ICommand logoutCommand;
         public ICommand LogoutCommand
         {
@@ -93,6 +106,7 @@ namespace Recipes.ViewModels
         private void ToSearch()
         {
             navigationService.Navigate<RecipesViewModel, UserModel>(new UserModel());
+           
         }
 
         private ICommand toSettingsCommand;
@@ -108,7 +122,6 @@ namespace Recipes.ViewModels
         private void ToSettings()
         {
             navigationService.Navigate<SettingsViewModel, UserModel>(new UserModel());
-            // Application.Current.p
         }
     }
 }

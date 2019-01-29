@@ -9,6 +9,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Recipes.ViewModels
@@ -28,7 +29,6 @@ namespace Recipes.ViewModels
 
         public override void Prepare(UserModel parameter)
         {
-            // receive and store the parameter here
             User = parameter;
         }
 
