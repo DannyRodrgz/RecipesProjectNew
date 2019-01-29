@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Recipes.ViewModels
@@ -27,10 +28,10 @@ namespace Recipes.ViewModels
             this.recipesService = recipesService;
             this.settingsService = settingsService;
             this.navigationService = navigationService;
-        }
+            var id = Preferences.Get("UserId", "default");
 
-        public override void Prepare()
-        {
+            Debug.WriteLine("INTIALIZE constructorrRRR" + id);
+
         }
 
         public override void Prepare(UserModel parameter)
@@ -39,8 +40,22 @@ namespace Recipes.ViewModels
         }
         public override async Task Initialize()
         {
-            await base.Initialize();
-            
+            // await base.Initialize();
+            var id = Preferences.Get("UserId", "default");
+            if (id.Equals("159"))
+            {
+
+                Debug.WriteLine("INTIALIZE TRUEEEEE");
+                await base.Initialize();
+            }
+            else
+            {
+
+                Debug.WriteLine("INTIALIZE FALSEEEEE");
+                base.ViewDestroy(true);
+                await navigationService.Navigate<LoginViewModel, UserModel>(new UserModel());
+            }
+
             searchString = "";
             recipes = new ObservableCollection<Recipe>();
             selectedRecipe = new Recipe();

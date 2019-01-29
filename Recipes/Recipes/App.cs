@@ -16,13 +16,14 @@ namespace Recipes
             Mvx.RegisterType<ISettingsService, SettingsService>();
 
             var id = Preferences.Get("UserId", "default");
-             if(id.Equals("159")) {
+            if (id.Equals("159")) {
 
                 RegisterAppStart<RecipesViewModel>();
             } else
             {
                 RegisterAppStart<LoginViewModel>();
             }
+             
         }
     }
 }

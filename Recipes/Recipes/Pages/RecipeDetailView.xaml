@@ -44,15 +44,14 @@
                                              HeightRequest="10"
                                              WidthRequest="10"
                                              Padding="5">
-                                    <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Vertical">
                                         <Label Text="{Binding Text}"
                                                TextColor="#182655"
-                                               FontSize="12"
-                                               HorizontalTextAlignment="Start"/>
+                                               FontSize="12"/>
                                         <Label Text="{Binding Weight}"
                                                TextColor="#4B5472"
                                                FontSize="12"
-                                               HorizontalTextAlignment="End"/>
+                                               HorizontalOptions="End"/>
                                     </StackLayout>
                                 </StackLayout>
                             </ViewCell>
@@ -75,36 +74,37 @@
         </StackLayout>
     </ContentPage>
     <ContentPage Title="Nutrition information">
-        <StackLayout>
-            <StackLayout>
+        <StackLayout Padding="10">
+            <StackLayout HorizontalOptions="Center" Padding="8">
+                <Label Text="{Binding Recipe.Label}" TextColor="#031A68" FontSize="18"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="Start">
+                <Label Text="Nutrition information:" TextColor="#031A68" FontSize="15"/>
+            </StackLayout>
+            <StackLayout Padding="8">
                 <ListView  x:Name="listViewNutrional"
-                           ItemsSource="{Binding Recipe.Digest}">
+                       ItemsSource="{Binding Recipe.Digest}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
+                            <ViewCell Height="60">
                                 <StackLayout BackgroundColor="#FFFFFF"
-                                             Orientation="Vertical"
-                                             HeightRequest="10"
-                                             WidthRequest="10"
-                                             Padding="5">
+                                         Orientation="Horizontal"
+                                         Padding="2">
                                     <StackLayout Orientation="Vertical">
                                         <Label Text="{Binding Label}"
                                                TextColor="#182655"
-                                               FontSize="13"/>
-                                        <ListView  x:Name="listViewNutrional" ItemsSource="{Binding Sub}" >
+                                               FontSize="15"/>
+                                        <ListView  x:Name="listViewNutrional"
+                                                   ItemsSource="{Binding Sub}">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <ViewCell>
                                                         <StackLayout BackgroundColor="#FFFFFF"
                                                                      Orientation="Vertical"
-                                                                     HeightRequest="10"
-                                                                     WidthRequest="10"
-                                                                     Padding="5">
-                                                            <StackLayout Orientation="Horizontal">
-                                                                <Label Text="{Binding Label}"
-                                                                       TextColor="#182655"
-                                                                       FontSize="13"/>
-                                                            </StackLayout>
+                                                                    HorizontalOptions="CenterAndExpand">
+                                                            <Label Text="{Binding Label}"
+                                                                   TextColor="#4B5472"
+                                                                   FontSize="12"/>
                                                         </StackLayout>
                                                     </ViewCell>
                                                 </DataTemplate>
@@ -116,7 +116,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </StackLayout>
+            </StackLayout>            
         </StackLayout>
     </ContentPage>
 </views:MvxTabbedPage>
