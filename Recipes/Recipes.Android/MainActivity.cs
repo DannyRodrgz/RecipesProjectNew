@@ -9,6 +9,7 @@ using Android.OS;
 using MvvmCross.Forms.Platforms.Android.Views;
 using MvvmCross.Forms.Platforms.Android.Core;
 using Xamarin.Essentials;
+using Firebase;
 
 namespace Recipes.Droid
 {
@@ -23,7 +24,7 @@ namespace Recipes.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
+            FirebaseApp.InitializeApp(Application.Context);
             base.OnCreate(savedInstanceState);
         }
 

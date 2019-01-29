@@ -98,7 +98,7 @@
                                                    ItemsSource="{Binding Sub}">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <ViewCell>
+                                                    <ViewCell >
                                                         <StackLayout BackgroundColor="#FFFFFF"
                                                                      Orientation="Vertical"
                                                                     HorizontalOptions="CenterAndExpand">

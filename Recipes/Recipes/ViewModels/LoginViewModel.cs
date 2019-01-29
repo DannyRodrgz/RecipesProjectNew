@@ -20,11 +20,15 @@ namespace Recipes.ViewModels
         private string Id;
         private UserModel User;
         private readonly IMvxNavigationService navigationService;
+        readonly IFirebaseAuthenticator firebaseAuthenticator;
 
-        public LoginViewModel(ILoginService loginService, IMvxNavigationService navigationService)
+        public LoginViewModel(ILoginService loginService, 
+            IMvxNavigationService navigationService,
+            IFirebaseAuthenticator firebaseAuthenticator)
         {
             this.loginService = loginService;
             this.navigationService = navigationService;
+            this.firebaseAuthenticator = firebaseAuthenticator;
         }
 
         public override void Prepare(UserModel parameter)
@@ -60,16 +64,16 @@ namespace Recipes.ViewModels
         }
 
         private ICommand saveUserCommand;
-        public ICommand SaveUserCommand
+        /*public ICommand SaveUserSCommand
         {
             get 
             {
-                saveUserCommand = saveUserCommand ?? new MvxCommand(SaveUser);
+                saveUserCommand = saveUserCommand ?? new MvxCommand(SaveUserAsync);
                 return saveUserCommand;
             }
         }
         
-        private void SaveUser()
+        private Task SaveUserAsync()
         {
             Id = "159";
             User = new UserModel(Id, Username, Password);
@@ -83,6 +87,32 @@ namespace Recipes.ViewModels
                     Application.Current.MainPage.DisplayAlert("Recipes", "Your username or password are not correct.", "Ok");
                 }
             } else Application.Current.MainPage.DisplayAlert("Recipes", "Fill in the user and password fields.", "Ok");
+        }*/
+
+        public ICommand SaveUserCommand
+        {
+            get
+            {
+                return new MvxCommand(async () =>
+                {
+                    Id = "159";
+                    User = new UserModel(Id, Username, Password);
+                    if (!string.IsNullOrEmpty(User.Name) || !string.IsNullOrEmpty(User.Password))
+                    {
+                        if (User.Name.Equals("danny") && User.Password.Equals("123"))
+                        {
+                            loginService.SaveUser(User);
+                            await navigationService.Navigate<RecipesViewModel, UserModel>(new UserModel());
+                           // var user = await firebaseAuthenticator.LoginWithEmailPassword(Username, Password);
+                        }
+                        else
+                        {
+                           await Application.Current.MainPage.DisplayAlert("Recipes", "Your username or password are not correct.", "Ok");
+                        }
+                    }
+                    else await Application.Current.MainPage.DisplayAlert("Recipes", "Fill in the user and password fields.", "Ok");
+                });
+            }
         }
 
     }

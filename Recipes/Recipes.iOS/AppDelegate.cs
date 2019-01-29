@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
+﻿using Foundation;
 using MvvmCross.Forms.Platforms.Ios.Core;
 using UIKit;
 
@@ -23,6 +19,7 @@ namespace Recipes.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Firebase.Core.App.Configure();
             return base.FinishedLaunching(app, options);
         }
     }
