@@ -32,13 +32,27 @@ namespace Recipes.Services
                 });
             }
         }
-        public async Task<ObservableCollection<Recipe>> SearchRecipes(string ingredient)
+        public async Task<ObservableCollection<Recipe>> SearchRecipes(string ingredient, string diet, string allergie)
         {
             try
             {
-                var response = await BaseClient.GetAsync(string.Format("/search?q=" + ingredient + "&app_id=7af53792&app_key=c9e91b62013333bebd3abf3adc20e0e8", API_KEY,
-                    ingredient));
-                response.EnsureSuccessStatusCode();
+                string search = "";
+
+                if (diet.Equals("") && allergie.Equals("")) {
+                    search = "/search?q=" + ingredient + "&app_id=7af53792&app_key=c9e91b62013333bebd3abf3adc20e0e8";
+                } else
+                {
+                    if (!diet.Equals("") && !allergie.Equals(""))
+                    {
+                            search = "/search?q=" + ingredient + "&diet=" + diet + "&allergie=" + allergie + "&app_id=7af53792&app_key=c9e91b62013333bebd3abf3adc20e0e8";
+                    } else if (!diet.Equals(""))
+                    {
+                        search = "/search?q=" + ingredient + "&diet=" + diet + "&app_id=7af53792&app_key=c9e91b62013333bebd3abf3adc20e0e8";
+                    } else search = "/search?q=" + ingredient + "&allergie=" + allergie + "&app_id=7af53792&app_key=c9e91b62013333bebd3abf3adc20e0e8";
+                }             
+
+                var response = await BaseClient.GetAsync(string.Format(search, API_KEY,
+                   ingredient));
 
                 var json = await response.Content.ReadAsStringAsync();
 
@@ -47,7 +61,7 @@ namespace Recipes.Services
                 var allRecipesResult = JsonConvert.DeserializeObject<Result>(json);
 
                 var result = new Result(allRecipesResult.hits);
-                
+
                 for (int i=0; i<result.hits.Count; i++)
                 {
                     recipes.Add(result.hits[i].Recipe);

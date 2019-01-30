@@ -29,7 +29,7 @@ namespace RecipesTests
         [Test]
         public async Task LabelRecipeTest()
         {
-            recipes = await recipeService.SearchRecipes("cocca");
+            recipes = await recipeService.SearchRecipes("cocca", "", "");
             string recipeLabel = recipes[0].Label;
             Assert.AreEqual(recipeTest.Label, recipeLabel);
         }
@@ -37,7 +37,7 @@ namespace RecipesTests
         [Test]
         public async Task RecipesNotFound()
         {
-            recipes = await recipeService.SearchRecipes("759257854");
+            recipes = await recipeService.SearchRecipes("759257854", "", "");
             ObservableCollection<Recipe> recipeEmpty = new ObservableCollection<Recipe>();
             Assert.AreEqual(recipeEmpty, recipes);
         }
@@ -45,7 +45,7 @@ namespace RecipesTests
         [Test]
         public async Task RecipeCaloriesTest()
         {
-            recipes = await recipeService.SearchRecipes("cocca");
+            recipes = await recipeService.SearchRecipes("cocca", "", "");
             recipe = recipes[0];
             Assert.AreEqual(recipeTest.Calories, recipe.Calories);
         }
@@ -53,7 +53,7 @@ namespace RecipesTests
         [Test]
         public async Task RecipeCaloriesPerRecipeTest()
         {
-            recipes = await recipeService.SearchRecipes("cocca");
+            recipes = await recipeService.SearchRecipes("cocca", "", "");
             recipe = recipes[0];
             Assert.AreEqual(recipeTest.RecipeCalories, recipe.RecipeCalories);
         }

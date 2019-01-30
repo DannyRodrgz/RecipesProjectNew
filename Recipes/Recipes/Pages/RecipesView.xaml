@@ -33,6 +33,39 @@
                              mvx:Bi.nd="Command GetRecipesCommand">
                 </ImageButton>
             </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Picker x:Name="diet" Title="Diet filters" 
+                        SelectedItem="{Binding SelectedDiet}"
+                        HeightRequest="50" WidthRequest="100"
+                        FontSize="12">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>balanced</x:String>
+                            <x:String>high-protein</x:String>
+                            <x:String>high-fiber</x:String>
+                            <x:String>low-fat</x:String>
+                            <x:String>low-carb</x:String>
+                            <x:String>low-sodium</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Picker x:Name="Allergie" Title="Allergie filters" 
+                        SelectedItem="{Binding SelectedAllergie}"
+                        HeightRequest="50" WidthRequest="100"
+                        FontSize="12">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>egg-free</x:String>
+                            <x:String>fish-free</x:String>
+                            <x:String>gluten-free</x:String>
+                            <x:String>dairy-free</x:String>
+                            <x:String>soy-free</x:String>
+                            <x:String>wheat-free</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </StackLayout>
             <StackLayout>
                 <ActivityIndicator Color="Gray" IsRunning="{Binding Searching}" IsVisible="{Binding Searching}"/>
             </StackLayout>
