@@ -16,5 +16,19 @@ namespace Recipes.Services
             Preferences.Set("UserId", User.Id);
             Preferences.Set("Username", User.Name);
         }
+
+        public bool IsLoget()
+        {
+            var id = Preferences.Get("UserId", "default");
+            if (id.Equals("159"))
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

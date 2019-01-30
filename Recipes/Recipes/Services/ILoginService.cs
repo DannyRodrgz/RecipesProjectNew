@@ -6,5 +6,7 @@ namespace Recipes.Services
     {
         void SaveUserLocalStorage(UserModel User);
         void CreateUser(UserModel User);
+
+        bool IsLoget();
     }
 }
