@@ -18,7 +18,6 @@
     <PackageReference Include="NUnit" Version="3.11.0" />
     <PackageReference Include="NUnit.Console" Version="3.9.0" />
     <PackageReference Include="NUnit.Runners" Version="3.9.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>

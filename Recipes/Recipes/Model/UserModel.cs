@@ -6,16 +6,13 @@ namespace Recipes.Model
 {
     public class UserModel : IUserModel
     {
-        public UserModel()
-        {
-        }
-
-        public UserModel(String IdUser, String UserName, String UserPassword)
+        public UserModel(string IdUser, string UserName, string UserPassword)
         {
             Id = IdUser;
             Name = UserName;
             Password = UserPassword;
         }
+        public UserModel() { }
 
         public string Id { get; set; }
         public string Name { get; set; }

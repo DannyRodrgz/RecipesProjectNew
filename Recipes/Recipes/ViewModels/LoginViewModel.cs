@@ -5,11 +5,8 @@ using MvvmCross.ViewModels;
 using Recipes.Model;
 using Recipes.Pages;
 using Recipes.Services;
-using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Recipes.ViewModels
@@ -27,12 +24,12 @@ namespace Recipes.ViewModels
             this.navigationService = navigationService;
         }
 
-        public override void Prepare(UserModel parameter)
+        public override void Prepare(UserModel User)
         {
-            User = parameter;
+            this.User = User;
         }
 
-        public async Task Initialize()
+        public override async Task Initialize()
         {
             await base.Initialize();
         }
@@ -76,7 +73,7 @@ namespace Recipes.ViewModels
             if (!string.IsNullOrEmpty(User.Name) || !string.IsNullOrEmpty(User.Password)) {
                 if (User.Name.Equals("danny") && User.Password.Equals("123"))
                 {
-                    loginService.SaveUser(User);
+                    loginService.SaveUserLocalStorage(User);
                     navigationService.Navigate<RecipesViewModel, UserModel>(new UserModel());
                 } else
                 {

@@ -20,13 +20,9 @@ namespace Recipes.ViewModels
             this.settingsService = settingsService;
             this.navigationService = navigationService;
         }
-        public override void Prepare()
+        public override void Prepare(UserModel user)
         {
-        }
-
-        public override void Prepare(UserModel parameter)
-        {
-            user = parameter;
+            this.user = user;
         }
         public override async Task Initialize()
         {
@@ -57,7 +53,7 @@ namespace Recipes.ViewModels
 
         private void Logout()
         {
-            settingsService.logout();
+            settingsService.Logout();
             navigationService.Navigate<LoginViewModel, UserModel>(new UserModel());
         }
 
@@ -91,7 +87,7 @@ namespace Recipes.ViewModels
             bool logout = await Application.Current.MainPage.DisplayAlert("Recipes", "Sign out", "Ok", "Cancel");
             if (logout)
             {
-                settingsService.logout();
+                settingsService.Logout();
                 await navigationService.Navigate<LoginViewModel, UserModel>(new UserModel());
             }
         }

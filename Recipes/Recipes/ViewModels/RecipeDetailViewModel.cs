@@ -49,7 +49,7 @@ namespace Recipes.ViewModels
 
         public void ToRecipeSource()
         {
-            Device.OpenUri(recipe.Url);
+            recipeDetailService.OpenBrowser(recipe.Url);
         }        
         public Recipe Recipe
         {
@@ -58,18 +58,6 @@ namespace Recipes.ViewModels
             {
                 recipe = value;
                 RaisePropertyChanged(() => Recipe);
-            }
-        }
-
-        private Digest[] digest;
-
-        public Digest[] Digest
-        {
-            get { return recipe.Digest; }
-            set
-            {
-                digest = value;
-                RaisePropertyChanged(() => Digest);
             }
         }
 
@@ -88,7 +76,7 @@ namespace Recipes.ViewModels
             bool logout = await Application.Current.MainPage.DisplayAlert("Recipes", "Sign out", "Ok", "Cancel");
             if (logout)
             {
-                settingsService.logout();
+                settingsService.Logout();
                 await navigationService.Navigate<LoginViewModel, UserModel>(new UserModel());
             }
         }

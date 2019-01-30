@@ -6,6 +6,6 @@ namespace Recipes.Services
 {
     public interface ISettingsService
     {
-        void logout();
+        void Logout();
     }
 }

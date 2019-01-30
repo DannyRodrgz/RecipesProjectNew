@@ -6,5 +6,6 @@ namespace Recipes.Services
 {
     public interface IRecipeDetailService
     {
+        void OpenBrowser(Uri url);
     }
 }
