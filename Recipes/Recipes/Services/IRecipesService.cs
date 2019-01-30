@@ -8,6 +8,6 @@ namespace Recipes.Services
 {
     public interface IRecipesService
     {
-        Task<ObservableCollection<Recipe>> SearchRecipes(string ingredient);
+        Task<ObservableCollection<Recipe>> SearchRecipes(string ingredient, string diet, string allergie);
     }
 }

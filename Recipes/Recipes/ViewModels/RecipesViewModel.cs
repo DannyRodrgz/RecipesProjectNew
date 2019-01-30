@@ -18,6 +18,7 @@ namespace Recipes.ViewModels
     public class RecipesViewModel : MvxViewModel<UserModel>
     {
         private UserModel user;
+        private ObservableCollection<string> dietLabels;
         readonly IRecipesService recipesService;
         readonly ISettingsService settingsService;
         private readonly IMvxNavigationService navigationService;
@@ -41,6 +42,8 @@ namespace Recipes.ViewModels
             searchString = "";
             recipes = new ObservableCollection<Recipe>();
             selectedRecipe = new Recipe();
+            selectedDiet = "";
+            selectedAllergie = "";
         }
 
         private bool searching;
@@ -67,6 +70,16 @@ namespace Recipes.ViewModels
             }
         }
 
+        public ObservableCollection<string> DietLabels
+        {
+            get { return dietLabels; }
+            set
+            {
+                dietLabels = value;
+                RaisePropertyChanged(() => DietLabels);
+            }
+        }
+
         private ObservableCollection<Recipe> recipes;
 
         public ObservableCollection<Recipe> Recipes
@@ -86,10 +99,9 @@ namespace Recipes.ViewModels
                 {
                     Searching = true;
                     Recipes.Clear();
-                    Recipes = await recipesService.SearchRecipes(searchString);
-                    Debug.WriteLine(Recipes[0]);
+                    Recipes = await recipesService.SearchRecipes(searchString, selectedDiet, selectedAllergie);
                     Searching = false;
-                    if(Recipes.Count== 0) {
+                    if(Recipes.Count == 0) {
                         await Application.Current.MainPage.DisplayAlert("Recipes", "No results for your search", "Ok");
                     }
                 });
@@ -123,6 +135,29 @@ namespace Recipes.ViewModels
             navigationService.Navigate<RecipeDetailViewModel, Recipe>(recipeNew);
         }
 
+        private string selectedAllergie;
+
+        public string SelectedAllergie
+        {
+            get { return selectedAllergie; }
+            set
+            {
+                selectedAllergie = value;
+                RaisePropertyChanged(() => SelectedAllergie);
+            }
+        }
+
+        private string selectedDiet;
+
+        public string SelectedDiet
+        {
+            get { return selectedDiet; }
+            set
+            {
+                selectedDiet = value;
+                RaisePropertyChanged(() => SelectedDiet);
+            }
+        }
 
         private bool isSelected;
 
