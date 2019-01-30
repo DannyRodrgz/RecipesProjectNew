@@ -31,9 +31,9 @@ namespace Recipes.ViewModels
 
         }
 
-        public override void Prepare(UserModel parameter)
+        public override void Prepare(UserModel user)
         {
-            user = parameter;
+            this.user = user;
         }
         public override async Task Initialize()
         {
@@ -87,6 +87,7 @@ namespace Recipes.ViewModels
                     Searching = true;
                     Recipes.Clear();
                     Recipes = await recipesService.SearchRecipes(searchString);
+                    Debug.WriteLine(Recipes[0]);
                     Searching = false;
                     if(Recipes.Count== 0) {
                         await Application.Current.MainPage.DisplayAlert("Recipes", "No results for your search", "Ok");
@@ -165,7 +166,7 @@ namespace Recipes.ViewModels
             bool logout = await Application.Current.MainPage.DisplayAlert("Recipes", "Sign out", "Ok", "Cancel");
             if(logout)
             {
-                settingsService.logout();
+                settingsService.Logout();
                 await navigationService.Navigate<LoginViewModel, UserModel>(new UserModel());
             }
         }

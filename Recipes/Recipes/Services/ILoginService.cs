@@ -4,6 +4,7 @@ namespace Recipes.Services
 {
     public interface ILoginService
     {
-        void SaveUser(UserModel User);
+        void SaveUserLocalStorage(UserModel User);
+        void CreateUser(UserModel User);
     }
 }

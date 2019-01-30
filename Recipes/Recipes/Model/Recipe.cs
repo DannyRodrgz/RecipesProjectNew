@@ -7,8 +7,15 @@ namespace Recipes.Model
 {
     public class Recipe : IRecipe
     {
-        public Recipe ()
-        {
+        public Recipe() { }
+
+        public Recipe(string Label, Uri Image, Uri Url, long Yield, double Calories) {
+            this.Label = Label;
+            this.Image = Image;
+            this.Url = Url;
+            this.Yield = Yield;
+            this.Calories = Calories;
+            this.IngredientsRecipe = IngredientsRecipe;
         }
 
         [JsonProperty("uri")]
@@ -58,8 +65,6 @@ namespace Recipes.Model
 
         [JsonProperty("digest")]
         public Digest[] Digest { get; set; }
-        public double CaloriesForRecipe { get; set; }
-
         public double RecipeCalories
         {
             get { return Yield / Calories; }

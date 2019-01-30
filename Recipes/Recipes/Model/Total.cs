@@ -7,11 +7,6 @@ namespace Recipes.Model
 {
     public partial class Total
     {
-        public Total() { }
-        public Total(string LabelT, double QuantityT, Unit UnitT) {
-            Label = LabelT;
-            Quantity = QuantityT;
-        }
         [JsonProperty("label")]
         public string Label { get; set; }
 

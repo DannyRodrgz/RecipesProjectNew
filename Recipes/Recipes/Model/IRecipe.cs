@@ -54,5 +54,7 @@ namespace Recipes.Model
 
         [JsonProperty("digest")]
         Digest[] Digest { get; set; }
+
+        double RecipeCalories { get; }
     }
 }

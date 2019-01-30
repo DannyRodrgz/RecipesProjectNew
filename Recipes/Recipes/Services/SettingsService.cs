@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Recipes.Model;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -8,10 +9,15 @@ namespace Recipes.Services
 {
     public class SettingsService : ISettingsService
     {
-        public void logout()
+        public void Logout()
         {
             Preferences.Remove("UserId");
             Preferences.Remove("Username");
+        }
+
+        public UserModel RemoveUser(UserModel user)
+        {
+            return user = null;
         }
     }
 }

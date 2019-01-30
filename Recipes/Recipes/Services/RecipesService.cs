@@ -32,12 +32,6 @@ namespace Recipes.Services
                 });
             }
         }
-
-        public Recipe getSpecificRecipe(string label)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<ObservableCollection<Recipe>> SearchRecipes(string ingredient)
         {
             try
