@@ -9,6 +9,7 @@ using Android.OS;
 using MvvmCross.Forms.Platforms.Android.Views;
 using MvvmCross.Forms.Platforms.Android.Core;
 using Xamarin.Essentials;
+using Recipes.Services;
 
 namespace Recipes.Droid
 {
@@ -27,12 +28,11 @@ namespace Recipes.Droid
             base.OnCreate(savedInstanceState);
         }
 
-        public override void OnBackPressed()
+       /* public override void OnBackPressed()
         {
-            var id = Preferences.Get("UserId", "default");
-            if (!id.Equals("159") || id.Equals("159")) return;
-
+            LoginService loginService = new LoginService();
+            if (!loginService.IsLoget() || loginService.IsLoget()) return;
             base.OnBackPressed();
-        }
+        }*/
     }
 }

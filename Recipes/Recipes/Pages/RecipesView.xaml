@@ -34,9 +34,11 @@
                 </ImageButton>
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Picker x:Name="diet" Title="Diet filters" 
+                <Picker x:Name="diet" 
+                        Title="Diet filters" 
                         SelectedItem="{Binding SelectedDiet}"
-                        HeightRequest="50" WidthRequest="100"
+                        HeightRequest="50" 
+                        WidthRequest="100"
                         FontSize="12">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
@@ -50,9 +52,11 @@
                     </Picker.ItemsSource>
                 </Picker>
 
-                <Picker x:Name="Allergie" Title="Allergie filters" 
+                <Picker x:Name="Allergie" 
+                        Title="Allergie filters" 
                         SelectedItem="{Binding SelectedAllergie}"
-                        HeightRequest="50" WidthRequest="100"
+                        HeightRequest="50" 
+                        WidthRequest="100"
                         FontSize="12">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
