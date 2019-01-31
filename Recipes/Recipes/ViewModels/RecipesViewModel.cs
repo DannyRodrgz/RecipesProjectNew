@@ -2,17 +2,15 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Recipes.Model;
-using Recipes.Pages;
 using Recipes.Services;
-using System;
-using System.Collections.Generic;
+using Recipes.ViewModels;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
+[assembly: MvxNavigation(typeof(RecipesViewModel), @"mvx://test/\?id=(?<id>[A-Z0-9]{32})$")]
 namespace Recipes.ViewModels
 {
     public class RecipesViewModel : MvxViewModel<UserModel>
@@ -44,6 +42,11 @@ namespace Recipes.ViewModels
             selectedRecipe = new Recipe();
             selectedDiet = "";
             selectedAllergie = "";
+        }
+
+        public void Init(string id) 
+        {
+
         }
 
         private bool searching;

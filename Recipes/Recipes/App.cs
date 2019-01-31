@@ -2,7 +2,6 @@
 using MvvmCross.ViewModels;
 using Recipes.Services;
 using Recipes.ViewModels;
-using Xamarin.Essentials;
 
 namespace Recipes
 {
@@ -10,10 +9,10 @@ namespace Recipes
     {
         public override void Initialize()
         {
-            Mvx.RegisterType<ILoginService, LoginService>();
-            Mvx.RegisterType<IRecipesService, RecipesService>();
-            Mvx.RegisterType<IRecipeDetailService, RecipeDetailService>();
-            Mvx.RegisterType<ISettingsService, SettingsService>();
+            Mvx.IoCProvider.RegisterType<ILoginService, LoginService>();
+            Mvx.IoCProvider.RegisterType<IRecipesService, RecipesService>();
+            Mvx.IoCProvider.RegisterType<IRecipeDetailService, RecipeDetailService>();
+            Mvx.IoCProvider.RegisterType<ISettingsService, SettingsService>();
 
             LoginService loginService = new LoginService();
             if (loginService.IsLoget())
