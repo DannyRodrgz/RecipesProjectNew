@@ -86,12 +86,12 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Frame WidthRequest="30" 
                                                HeightRequest="30" 
-                                               CornerRadius="35"
-                                               Padding="0" 
-                                               Margin="0">
+                                               CornerRadius="12"
+                                               Margin="0"
+                                               HasShadow="False"
+                                               Padding="0"
+                                               IsClippedToBounds="True">
                                             <Image Source="{Binding Image}"
-                                                   WidthRequest="25" 
-                                                   HeightRequest="25"
                                                    Aspect="AspectFill"/>
                                         </Frame>
                                         <Label TextColor="#182655"

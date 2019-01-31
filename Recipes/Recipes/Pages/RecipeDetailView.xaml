@@ -17,13 +17,15 @@
     </TabbedPage.ToolbarItems>
     <ContentPage Title="Ingredients">
         <StackLayout Padding="10">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10">
-                <Frame CornerRadius="35"
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="5">
+                <Frame CornerRadius="18"
                        Padding="0"
-                       Margin="0">
+                       Margin="0"
+                       IsClippedToBounds="True"
+                       HasShadow="False"
+                       WidthRequest="50"
+                       HeightRequest="110">
                     <Image Source="{Binding Recipe.Image}"
-                           WidthRequest="70"
-                           HeightRequest="70"
                            Aspect="AspectFill"/>
                 </Frame>
             </StackLayout>
