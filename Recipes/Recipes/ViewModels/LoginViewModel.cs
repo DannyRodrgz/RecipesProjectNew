@@ -3,7 +3,8 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Recipes.Model;
 using Recipes.Services;
-using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -73,11 +74,10 @@ namespace Recipes.ViewModels
                 if (User.Name.Equals("danny") && User.Password.Equals("123"))
                 {
                     loginService.SaveUserLocalStorage(User);
-                    // navigationService.Navigate<RecipesViewModel, UserModel>(new UserModel());
-                    navigationService.Navigate("mvx://test/?id=" + Guid.NewGuid().ToString("N"));
+                    navigationService.Navigate<RecipesViewModel, UserModel>(new UserModel());                    
                 } else
                 {
-                    Application.Current.MainPage.DisplayAlert("Recipes", "Your username or password are not correct.", "Ok");
+                    Application.Current.MainPage.DisplayAlert("Recipes", "Your username or password are not correct.", "Ok");                    
                 }
             } else Application.Current.MainPage.DisplayAlert("Recipes", "Fill in the user and password fields.", "Ok");
         }

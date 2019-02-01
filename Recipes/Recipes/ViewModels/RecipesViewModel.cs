@@ -6,11 +6,11 @@ using Recipes.Services;
 using Recipes.ViewModels;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-[assembly: MvxNavigation(typeof(RecipesViewModel), @"mvx://test/\?id=(?<id>[A-Z0-9]{32})$")]
 namespace Recipes.ViewModels
 {
     public class RecipesViewModel : MvxViewModel<UserModel>

@@ -28,11 +28,11 @@ namespace Recipes.Droid
             base.OnCreate(savedInstanceState);
         }
 
-       /* public override void OnBackPressed()
+        public override void OnBackPressed()
         {
             LoginService loginService = new LoginService();
             if (!loginService.IsLoget() || loginService.IsLoget()) return;
             base.OnBackPressed();
-        }*/
+        }
     }
 }
