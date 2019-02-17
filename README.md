@@ -1,6 +1,6 @@
 # Recipes
 Application for the search of recipes online, with filters for allergies and diet.
-Aplication for OS Android and iOS, developed in C# with Xamarin.Forms, using the MvvmCross framework.
+Application for OS Android and iOS, developed in C# with Xamarin.Forms, using the MvvmCross framework.
 Using the Edaman API https://www.edamam.com/
 
 <img src="https://drive.google.com/uc?export=view&id=1vKuQBykOobcwbKus1RLV5ho7QRwWrFjb" width="300">  <img src="https://drive.google.com/uc?export=view&id=1EAx6otpyta0WrNpjVGOmviblqBNwtYcO" width="300">
